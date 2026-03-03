@@ -1,4 +1,5 @@
 import 'package:doctor_point/core/constants/app_colors.dart';
+import 'package:doctor_point/constants/app_strings.dart'; // Nouvel import
 import 'package:flutter/material.dart';
 import '../auth/auth_choice_screen.dart';
 
@@ -13,26 +14,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   int _currentIndex = 0;
 
-  final List<Map<String, String>> _pages = [
-    {
-      'image': 'assets/images/onboard1.png',
-      'title': 'Des milliers de médecins',
-      'desc':
-          'Accédez instantanément à des milliers de médecins et contactez-les facilement.',
-    },
-    {
-      'image': 'assets/images/onboard2.png',
-      'title': 'Discussion en direct',
-      'desc':
-          'Discutez avec votre médecin par message ou appel pour un meilleur suivi.',
-    },
-    {
-      'image': 'assets/images/onboard3.png',
-      'title': 'Chat avec les médecins',
-      'desc':
-          'Prenez rendez-vous et échangez avec votre médecin en toute simplicité.',
-    },
-  ];
+  // Les données sont maintenant dans AppStrings.onboardingPages
+  final List<Map<String, String>> _pages = AppStrings.onboardingPages.map((page) {
+    // On ajoute le chemin de l'image (identique à avant)
+    return {
+      'image': 'assets/images/onboard${_pages.indexOf(page) + 1}.png',
+      'title': page['title']!,
+      'desc': page['description']!,
+    };
+  }).toList();
 
   @override
   void dispose() {
@@ -55,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: TextButton(
                   onPressed: _goToAuthScreen,
                   child: Text(
-                    'Passer',
+                    AppStrings.skip,
                     style: TextStyle(
                       color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
@@ -92,7 +82,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Animated Image Container
+          // Animated Image Container (identique)
           Container(
             height: 300,
             decoration: BoxDecoration(
@@ -109,7 +99,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                // Background decorative circles
                 Positioned(
                   right: -30,
                   top: 30,
@@ -134,8 +123,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                 ),
-                
-                // Main Image
                 Hero(
                   tag: 'onboarding_image',
                   child: Image.asset(
@@ -150,7 +137,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 40),
 
-          // Title with animated underline
           Column(
             children: [
               Text(
@@ -178,7 +164,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 20),
 
-          // Description
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
@@ -201,7 +186,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          // Progress Dots
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
@@ -232,7 +216,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 32),
 
-          // Next/Start Button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -255,8 +238,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 children: [
                   Text(
                     _currentIndex == _pages.length - 1
-                        ? 'Commencer'
-                        : 'Continuer',
+                        ? AppStrings.getStarted
+                        : AppStrings.continue_,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -272,7 +255,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
 
-          // Optional: Back button for middle pages
           if (_currentIndex > 0) ...[
             const SizedBox(height: 16),
             TextButton(
@@ -283,7 +265,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 );
               },
               child: Text(
-                'Retour',
+                AppStrings.back,
                 style: TextStyle(
                   color: AppColors.textSecondary,
                   fontWeight: FontWeight.w500,
