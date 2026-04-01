@@ -51,7 +51,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Scaffold(
+          return const Scaffold(
             backgroundColor: AppColors.background,
             body: Center(
               child: CircularProgressIndicator(color: AppColors.primary),
@@ -66,13 +66,13 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
               elevation: 0,
               leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: AppColors.textPrimary,
                 ),
               ),
             ),
-            body: Center(
+            body: const Center(
               child: Text(
                 'Médecin introuvable',
                 style: TextStyle(
@@ -135,7 +135,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                   ),
                   child: IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back_rounded,
                       color: AppColors.textPrimary,
                     ),
@@ -145,7 +145,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                 title: _showAppBarTitle
                     ? Text(
                         fullName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
@@ -165,7 +165,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                           child: Center(
                             child: Text(
                               fullName[0],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 64,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -197,7 +197,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                     children: [
                       Text(
                         fullName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                           color: AppColors.textPrimary,
@@ -206,7 +206,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       const SizedBox(height: 8),
                       Text(
                         '$specialty • $hospital',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: AppColors.textSecondary,
                         ),
@@ -222,17 +222,17 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: Color(0xFFFFB800).withOpacity(0.1),
+                              color: const Color(0xFFFFB800).withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(
                                   Icons.star_rounded,
                                   color: Color(0xFFFFB800),
                                   size: 18,
                                 ),
-                                const SizedBox(width: 6),
+                                SizedBox(width: 6),
                                 Text(
                                   '4.8',
                                   style: TextStyle(
@@ -252,14 +252,14 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                               color: AppColors.primary.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(
                                   Icons.work_outline_rounded,
                                   color: AppColors.primary,
                                   size: 18,
                                 ),
-                                const SizedBox(width: 6),
+                                SizedBox(width: 6),
                                 Text(
                                   '10+ ans',
                                   style: TextStyle(
@@ -287,7 +287,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'À propos',
                         style: TextStyle(
                           fontSize: 20,
@@ -300,7 +300,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                         about.isNotEmpty
                             ? about
                             : 'Docteur spécialisé avec de nombreuses années d\'expérience dans le domaine médical. Disponible pour des consultations en ligne.',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           color: AppColors.textSecondary,
                           height: 1.6,
@@ -331,7 +331,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       /// Choose Date
-                      Text(
+                      const Text(
                         'Choisir une date',
                         style: TextStyle(
                           fontSize: 18,
@@ -345,7 +345,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       const SizedBox(height: 30),
                       
                       /// Choose Time
-                      Text(
+                      const Text(
                         'Choisir une heure',
                         style: TextStyle(
                           fontSize: 18,
@@ -359,7 +359,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                       const SizedBox(height: 30),
                       
                       /// Consultation Type
-                      Text(
+                      const Text(
                         'Type de consultation',
                         style: TextStyle(
                           fontSize: 18,
@@ -435,12 +435,12 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.calendar_month_rounded,
                                 size: 22,
                               ),
                               const SizedBox(width: 12),
-                              Text(
+                              const Text(
                                 'Prendre rendez-vous',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -450,7 +450,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
                               const Spacer(),
                               Text(
                                 '$selectedPrice FCFA',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -479,7 +479,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
           color: Colors.grey[50],
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             'Aucune date disponible cette semaine',
             style: TextStyle(
@@ -586,7 +586,7 @@ class _DoctorDetailScreenState extends State<DoctorDetailScreen> {
           color: Colors.grey[50],
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             'Aucune heure disponible',
             style: TextStyle(

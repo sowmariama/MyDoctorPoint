@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import '../core/constants/app_colors.dart';
-import '../home/home_screen.dart';
 class ChatScreen extends StatefulWidget {
   final String doctorId;
   final String doctorName;
@@ -123,7 +122,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ? Center(
                       child: Text(
                         widget.doctorName[0],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
@@ -137,7 +136,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Text(
                   widget.doctorName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
@@ -159,29 +158,29 @@ class _ChatScreenState extends State<ChatScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.call_rounded, size: 22),
+            icon: const Icon(Icons.call_rounded, size: 22),
             onPressed: () {
               // TODO: Initiate call
             },
           ),
           IconButton(
-            icon: Icon(Icons.videocam_rounded, size: 22),
+            icon: const Icon(Icons.videocam_rounded, size: 22),
             onPressed: () {
               // TODO: Initiate video call
             },
           ),
           PopupMenuButton<String>(
-            icon: Icon(Icons.more_vert_rounded),
+            icon: const Icon(Icons.more_vert_rounded),
             onSelected: (value) {
               if (value == 'end') _endChat();
             },
             itemBuilder: (context) => [
-              PopupMenuItem(
+              const PopupMenuItem(
                 value: 'end',
                 child: Row(
                   children: [
                     Icon(Icons.close_rounded, color: Colors.red, size: 20),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text('Terminer la discussion'),
                   ],
                 ),
@@ -226,7 +225,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               ? Center(
                                   child: Text(
                                     widget.doctorName[0],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: AppColors.primary,
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -287,7 +286,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             color: AppColors.primary.withOpacity(0.1),
                             shape: BoxShape.circle,
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'U',
                               style: TextStyle(
@@ -308,7 +307,7 @@ class _ChatScreenState extends State<ChatScreen> {
           /// Message Input
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               border: Border(
                 top: BorderSide(
@@ -320,7 +319,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.attach_file_rounded, color: AppColors.primary),
+                  icon: const Icon(Icons.attach_file_rounded, color: AppColors.primary),
                   onPressed: () {
                     // TODO: Attach file
                   },
@@ -349,12 +348,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 Container(
                   width: 48,
                   height: 48,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: AppColors.primary,
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.send_rounded,
                       color: Colors.white,
                       size: 20,

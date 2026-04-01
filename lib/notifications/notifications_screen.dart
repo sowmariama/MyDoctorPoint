@@ -109,7 +109,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(
+                  const CircularProgressIndicator(
                     strokeWidth: 2,
                     valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                   ),
@@ -272,7 +272,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Vos notifications',
                   style: TextStyle(
                     fontSize: 16,
@@ -372,7 +372,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           width: 10,
                           height: 10,
                           margin: const EdgeInsets.only(top: 6, right: 12),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.primary,
                             shape: BoxShape.circle,
                           ),
@@ -457,7 +457,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                     color: AppColors.primary.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     'Marquer comme lu',
                                     style: TextStyle(
                                       fontSize: 12,
@@ -505,7 +505,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     size: 80,
                     color: AppColors.primary.withOpacity(0.2),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.check_rounded,
                     size: 40,
                     color: AppColors.primary,
@@ -517,7 +517,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             const SizedBox(height: 40),
             
             // Titre
-            Text(
+            const Text(
               'Aucune notification',
               style: TextStyle(
                 fontSize: 26,
@@ -566,16 +566,16 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                side: BorderSide(
+                side: const BorderSide(
                   color: AppColors.primary,
                   width: 1.5,
                 ),
               ),
-              icon: Icon(
+              icon: const Icon(
                 Icons.refresh_rounded,
                 color: AppColors.primary,
               ),
-              label: Text(
+              label: const Text(
                 'Rafraîchir',
                 style: TextStyle(
                   fontSize: 16,
@@ -658,9 +658,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: const Text(
             'Notifications marquées comme lues',
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColors.primary,
           behavior: SnackBarBehavior.floating,

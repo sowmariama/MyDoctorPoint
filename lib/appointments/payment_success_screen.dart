@@ -108,7 +108,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (_) => HomeScreen(userName: 'Utilisateur'),
+        builder: (_) => const HomeScreen(userName: 'Utilisateur'),
       ),
       (_) => false,
     );
@@ -146,11 +146,11 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.check_rounded,
                         size: 48,
                         color: Colors.white,
@@ -163,7 +163,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
               const SizedBox(height: 32),
 
               /// Success Title
-              Text(
+              const Text(
                 'Paiement réussi !',
                 style: TextStyle(
                   fontSize: 28,
@@ -178,7 +178,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
               /// Success Message
               Text(
                 'Votre $typeLabel est confirmé',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: AppColors.textSecondary,
                 ),
@@ -188,7 +188,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
 
               Text(
                 '${widget.price} FCFA • ${widget.method}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.primary,
                   fontWeight: FontWeight.w600,
@@ -258,7 +258,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     shadowColor: Colors.transparent,
                   ),
                   child: _isLoading
-                      ? SizedBox(
+                      ? const SizedBox(
                           width: 24,
                           height: 24,
                           child: CircularProgressIndicator(
@@ -278,7 +278,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                               widget.consultationType == 'message'
                                   ? 'Ouvrir la messagerie'
                                   : 'Démarrer $typeLabel',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -302,14 +302,14 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.home_rounded,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         'Retour à l\'accueil',
                         style: TextStyle(
@@ -351,7 +351,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
             children: [
               Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 13,
                   color: AppColors.textSecondary,
                 ),
@@ -359,7 +359,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
               const SizedBox(height: 4),
               Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.textPrimary,

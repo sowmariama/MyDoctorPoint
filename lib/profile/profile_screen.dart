@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(color: AppColors.primary),
             );
           }
@@ -125,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(height: 20),
                         Text(
                           fullName,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w700,
                             color: AppColors.textPrimary,
@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(height: 8),
                         Text(
                           email,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.textSecondary,
                           ),
@@ -152,14 +152,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: AppColors.primary.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Row(
+                              child: const Row(
                                 children: [
                                   Icon(
                                     Icons.medical_services_rounded,
                                     size: 16,
                                     color: AppColors.primary,
                                   ),
-                                  const SizedBox(width: 6),
+                                  SizedBox(width: 6),
                                   Text(
                                     'Patient',
                                     style: TextStyle(
@@ -183,14 +183,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   color: AppColors.border,
                                 ),
                               ),
-                              child: Row(
+                              child: const Row(
                                 children: [
                                   Icon(
                                     Icons.star_rounded,
                                     size: 16,
                                     color: Color(0xFFFFB800),
                                   ),
-                                  const SizedBox(width: 6),
+                                  SizedBox(width: 6),
                                   Text(
                                     '4.8',
                                     style: TextStyle(
@@ -235,14 +235,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: AppColors.primary.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.person_outline_rounded,
                                 color: AppColors.primary,
                                 size: 20,
                               ),
                             ),
                             const SizedBox(width: 16),
-                            Text(
+                            const Text(
                               'Informations personnelles',
                               style: TextStyle(
                                 fontSize: 18,
@@ -259,7 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           'Date de naissance',
                           birthDate == null
                               ? '—'
-                              : DateFormat('dd/MM/yyyy').format(birthDate!),
+                              : DateFormat('dd/MM/yyyy').format(birthDate),
                           Icons.cake_rounded,
                         ),
                         _infoRow('Adresse', address, Icons.location_on_rounded),
@@ -292,17 +292,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: Color(0xFF34D399).withOpacity(0.1),
+                                color: const Color(0xFF34D399).withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.medical_services_outlined,
                                 color: Color(0xFF34D399),
                                 size: 20,
                               ),
                             ),
                             const SizedBox(width: 16),
-                            Text(
+                            const Text(
                               'Informations médicales',
                               style: TextStyle(
                                 fontSize: 18,
@@ -333,7 +333,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       style: OutlinedButton.styleFrom(
                         foregroundColor: AppColors.primary,
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: AppColors.primary,
                           width: 1.5,
                         ),
@@ -341,14 +341,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.edit_rounded,
                             size: 20,
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text(
                             'Modifier le profil',
                             style: TextStyle(
@@ -388,14 +388,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         elevation: 0,
                         shadowColor: Colors.transparent,
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.logout_rounded,
                             size: 20,
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text(
                             'Se déconnecter',
                             style: TextStyle(
@@ -443,7 +443,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Text(
                   label,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
                     color: AppColors.textSecondary,
                   ),
@@ -451,7 +451,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 4),
                 Text(
                   value,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,

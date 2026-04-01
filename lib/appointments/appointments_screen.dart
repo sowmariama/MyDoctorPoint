@@ -58,7 +58,7 @@ class AppointmentsScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(
+                  const CircularProgressIndicator(
                     strokeWidth: 2,
                     valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                   ),
@@ -151,7 +151,7 @@ class AppointmentsScreen extends StatelessWidget {
                       color: AppColors.primary.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person,
                       color: AppColors.primary,
                       size: 24,
@@ -204,7 +204,7 @@ class AppointmentsScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.calendar_today,
                               size: 16,
                               color: Colors.blueAccent,
@@ -239,7 +239,7 @@ class AppointmentsScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.access_time,
                               size: 16,
                               color: Colors.orangeAccent,
@@ -354,7 +354,7 @@ class AppointmentsScreen extends StatelessWidget {
             const SizedBox(height: 32),
             
             // Titre
-            Text(
+            const Text(
               'Aucun rendez-vous',
               style: TextStyle(
                 fontSize: 22,

@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: AppColors.textPrimary,
             size: 28,
@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         
         const SizedBox(height: 16),
         
-        Text(
+        const Text(
           'Créer votre compte',
           style: TextStyle(
             fontSize: 28,
@@ -115,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         
         const SizedBox(height: 8),
         
-        Text(
+        const Text(
           'Rejoignez la communauté DoctorPoint en quelques étapes',
           style: TextStyle(
             fontSize: 16,
@@ -161,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           
           const SizedBox(height: 20),
           
-          Text(
+          const Text(
             'Étape 1/3 : Créez vos identifiants',
             style: TextStyle(
               fontSize: 14,
@@ -172,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           
           const SizedBox(height: 8),
           
-          Text(
+          const Text(
             'Remplissez vos informations de base pour commencer',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -236,7 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Nom complet *',
           style: TextStyle(
             fontSize: 14,
@@ -263,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -271,7 +271,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.person_rounded,
                 color: AppColors.primary,
               ),
@@ -296,7 +296,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Adresse email *',
           style: TextStyle(
             fontSize: 14,
@@ -324,7 +324,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -332,7 +332,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.email_rounded,
                 color: AppColors.primary,
               ),
@@ -357,7 +357,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Numéro de téléphone',
           style: TextStyle(
             fontSize: 14,
@@ -382,7 +382,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -390,7 +390,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.phone_rounded,
                 color: AppColors.primary,
               ),
@@ -415,7 +415,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Mot de passe *',
           style: TextStyle(
             fontSize: 14,
@@ -446,7 +446,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -454,7 +454,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.lock_rounded,
                 color: AppColors.primary,
               ),
@@ -556,14 +556,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   style: TextStyle(
                     fontSize: 13,
                     color: AppColors.textSecondary,
                     height: 1.4,
                   ),
                   children: [
-                    const TextSpan(text: 'J\'accepte les '),
+                    TextSpan(text: 'J\'accepte les '),
                     TextSpan(
                       text: 'Conditions d\'utilisation',
                       style: TextStyle(
@@ -571,7 +571,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const TextSpan(text: ' et la '),
+                    TextSpan(text: ' et la '),
                     TextSpan(
                       text: 'Politique de confidentialité',
                       style: TextStyle(
@@ -579,7 +579,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const TextSpan(text: ' de DoctorPoint'),
+                    TextSpan(text: ' de DoctorPoint'),
                   ],
                 ),
               ),
@@ -605,7 +605,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           shadowColor: AppColors.primary.withOpacity(0.3),
         ),
         child: loading
-            ? SizedBox(
+            ? const SizedBox(
                 height: 24,
                 width: 24,
                 child: CircularProgressIndicator(
@@ -613,11 +613,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   strokeWidth: 2.5,
                 ),
               )
-            : Row(
+            : const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.person_add_alt_1_rounded, size: 22),
-                  const SizedBox(width: 12),
+                  Icon(Icons.person_add_alt_1_rounded, size: 22),
+                  SizedBox(width: 12),
                   Text(
                     'Créer mon compte',
                     style: TextStyle(
@@ -632,7 +632,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _buildDivider() {
-    return Row(
+    return const Row(
       children: [
         Expanded(
           child: Divider(
@@ -641,7 +641,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             'Déjà inscrit ?',
             style: TextStyle(
@@ -665,7 +665,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'Vous avez déjà un compte ? ',
           style: TextStyle(
             color: AppColors.textSecondary,
@@ -685,7 +685,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             foregroundColor: AppColors.primary,
             padding: EdgeInsets.zero,
           ),
-          child: Text(
+          child: const Text(
             'Se connecter',
             style: TextStyle(
               fontSize: 15,
@@ -713,7 +713,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => SetupProfileScreen(uid: user!.uid),
+          builder: (_) => SetupProfileScreen(uid: user.uid),
         ),
       );
     } catch (e) {
@@ -724,7 +724,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             e.toString().contains('email-already-in-use')
                 ? 'Cet email est déjà utilisé'
                 : 'Erreur lors de l\'inscription',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.red.shade600,
           behavior: SnackBarBehavior.floating,

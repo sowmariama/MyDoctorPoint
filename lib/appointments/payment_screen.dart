@@ -34,19 +34,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
     'wave': {
       'name': 'Wave',
       'icon': 'assets/images/wave.png',
-      'color': Color(0xFF00B2FF),
+      'color': const Color(0xFF00B2FF),
       'description': 'Paiement rapide et sécurisé',
     },
     'orange': {
       'name': 'Orange Money',
       'icon': 'assets/images/orange_money.png',
-      'color': Color(0xFFFF6B00),
+      'color': const Color(0xFFFF6B00),
       'description': 'Paiement mobile Orange',
     },
     'free': {
       'name': 'Free Money',
       'icon': 'assets/images/free_money.png',
-      'color': Color(0xFF8E44AD),
+      'color': const Color(0xFF8E44AD),
       'description': 'Paiement mobile Free',
     },
   };
@@ -127,7 +127,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         SnackBar(
           content: Text(
             'Erreur de paiement: ${e.toString()}',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.red.shade600,
           behavior: SnackBarBehavior.floating,
@@ -193,7 +193,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           color: AppColors.primary.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.medical_services_rounded,
                           color: AppColors.primary,
                           size: 28,
@@ -204,7 +204,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Résumé du paiement',
                               style: TextStyle(
                                 fontSize: 18,
@@ -215,7 +215,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             const SizedBox(height: 4),
                             Text(
                               consultationTypeLabel,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: AppColors.textSecondary,
                               ),
@@ -230,7 +230,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   _detailRow('Date', widget.date),
                   _detailRow('Heure', widget.time),
                   const SizedBox(height: 20),
-                  Divider(
+                  const Divider(
                     color: AppColors.border,
                     height: 1,
                   ),
@@ -238,7 +238,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Total à payer',
                         style: TextStyle(
                           fontSize: 16,
@@ -248,7 +248,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ),
                       Text(
                         '${widget.price} FCFA',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w800,
                           color: AppColors.primary,
@@ -263,7 +263,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             const SizedBox(height: 32),
 
             /// Payment Methods Title
-            Text(
+            const Text(
               'Choisissez votre moyen de paiement',
               style: TextStyle(
                 fontSize: 20,
@@ -272,7 +272,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
+            const Text(
               'Sélectionnez une option de paiement sécurisée',
               style: TextStyle(
                 fontSize: 14,
@@ -386,7 +386,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                 ),
               );
-            }).toList(),
+            }),
 
             const SizedBox(height: 32),
 
@@ -394,19 +394,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Color(0xFFE8F5E9),
+                color: const Color(0xFFE8F5E9),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: Color(0xFFC8E6C9),
+                  color: const Color(0xFFC8E6C9),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(
                     Icons.lock_rounded,
                     color: Color(0xFF388E3C),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Paiement 100% sécurisé. Vos données bancaires sont cryptées.',
@@ -439,7 +439,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   shadowColor: Colors.transparent,
                 ),
                 child: loading
-                    ? SizedBox(
+                    ? const SizedBox(
                         width: 24,
                         height: 24,
                         child: CircularProgressIndicator(
@@ -450,14 +450,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.payments_rounded,
                             size: 22,
                           ),
                           const SizedBox(width: 12),
                           Text(
                             'Payer ${widget.price} FCFA',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
@@ -481,7 +481,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Annuler',
                   style: TextStyle(
                     fontSize: 15,
@@ -504,14 +504,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
         children: [
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textSecondary,
             ),
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: AppColors.textPrimary,

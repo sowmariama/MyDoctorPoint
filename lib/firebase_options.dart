@@ -41,46 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDUaw97bIezYWYk0GkQw3De2fuUKxhqMcI',
-    appId: '1:172012131210:web:d28d414d3f9d1ad238ae73',
-    messagingSenderId: '172012131210',
-    projectId: 'doctor-point-3b87a',
-    authDomain: 'doctor-point-3b87a.firebaseapp.com',
-    storageBucket: 'doctor-point-3b87a.firebasestorage.app',
+    apiKey: 'AIzaSyBpLC4OQThrFHA6e8B-3DqKZVEnP2_WUSw',
+    appId: '1:1022602589391:web:44a8ba50062fe6d84ef3ba',
+    messagingSenderId: '1022602589391',
+    projectId: 'docteurpoint-e6bf5',
+    authDomain: 'docteurpoint-e6bf5.firebaseapp.com',
+    storageBucket: 'docteurpoint-e6bf5.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDykFDEjSaYbp52i2nkP5JlkfH-B2fZsyY',
-    appId: '1:172012131210:android:565e5b8b98a67ba338ae73',
-    messagingSenderId: '172012131210',
-    projectId: 'doctor-point-3b87a',
-    storageBucket: 'doctor-point-3b87a.firebasestorage.app',
+    apiKey: 'AIzaSyCzY4IIr2t6ltwCZgYEcTRRA7JnzghcM9A',
+    appId: '1:1022602589391:android:98b1d27131ded7e24ef3ba',
+    messagingSenderId: '1022602589391',
+    projectId: 'docteurpoint-e6bf5',
+    storageBucket: 'docteurpoint-e6bf5.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCfp19MsCDEyKZquqO_avP6UygL-UnEDi8',
-    appId: '1:172012131210:ios:e49be5f6533648fe38ae73',
-    messagingSenderId: '172012131210',
-    projectId: 'doctor-point-3b87a',
-    storageBucket: 'doctor-point-3b87a.firebasestorage.app',
+    apiKey: 'AIzaSyA9s-lH-cZZ8q8jNLgoUkedGLO0XDJiP_w',
+    appId: '1:1022602589391:ios:3966c9f8eae7d3e94ef3ba',
+    messagingSenderId: '1022602589391',
+    projectId: 'docteurpoint-e6bf5',
+    storageBucket: 'docteurpoint-e6bf5.firebasestorage.app',
     iosBundleId: 'com.example.doctorPoint',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCfp19MsCDEyKZquqO_avP6UygL-UnEDi8',
-    appId: '1:172012131210:ios:e49be5f6533648fe38ae73',
-    messagingSenderId: '172012131210',
-    projectId: 'doctor-point-3b87a',
-    storageBucket: 'doctor-point-3b87a.firebasestorage.app',
+    apiKey: 'AIzaSyA9s-lH-cZZ8q8jNLgoUkedGLO0XDJiP_w',
+    appId: '1:1022602589391:ios:3966c9f8eae7d3e94ef3ba',
+    messagingSenderId: '1022602589391',
+    projectId: 'docteurpoint-e6bf5',
+    storageBucket: 'docteurpoint-e6bf5.firebasestorage.app',
     iosBundleId: 'com.example.doctorPoint',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDUaw97bIezYWYk0GkQw3De2fuUKxhqMcI',
-    appId: '1:172012131210:web:f319bd20a010c59b38ae73',
-    messagingSenderId: '172012131210',
-    projectId: 'doctor-point-3b87a',
-    authDomain: 'doctor-point-3b87a.firebaseapp.com',
-    storageBucket: 'doctor-point-3b87a.firebasestorage.app',
+    apiKey: 'AIzaSyBpLC4OQThrFHA6e8B-3DqKZVEnP2_WUSw',
+    appId: '1:1022602589391:web:9c587386c2fed2104ef3ba',
+    messagingSenderId: '1022602589391',
+    projectId: 'docteurpoint-e6bf5',
+    authDomain: 'docteurpoint-e6bf5.firebaseapp.com',
+    storageBucket: 'docteurpoint-e6bf5.firebasestorage.app',
   );
+
 }

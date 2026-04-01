@@ -75,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Choisir la langue',
                 style: TextStyle(
                   fontSize: 20,
@@ -146,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Expanded(
               child: Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: AppColors.textPrimary,
@@ -154,7 +154,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             if (isSelected)
-              Icon(
+              const Icon(
                 Icons.check_circle_rounded,
                 color: AppColors.primary,
               ),
@@ -187,7 +187,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: AppColors.primary,
             size: 28,
@@ -265,7 +265,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             child: Center(
                               child: Text(
                                 initial,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.primary,
@@ -318,7 +318,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               color: Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Compte standard',
                               style: TextStyle(
                                 fontSize: 12,
@@ -337,7 +337,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 32),
 
               /// Account Settings
-              Text(
+              const Text(
                 'Compte',
                 style: TextStyle(
                   fontSize: 18,
@@ -371,7 +371,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Colors.orange.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Nouveau',
                     style: TextStyle(
                       fontSize: 12,
@@ -394,7 +394,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 32),
 
               /// App Settings
-              Text(
+              const Text(
                 'Préférences',
                 style: TextStyle(
                   fontSize: 18,
@@ -429,7 +429,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.teal,
                 trailing: Text(
                   language == 'FR' ? 'FR' : 'EN',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.textSecondary,
                     fontWeight: FontWeight.w600,
                   ),
@@ -440,7 +440,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const SizedBox(height: 32),
 
               /// Support & About
-              Text(
+              const Text(
                 'Support',
                 style: TextStyle(
                   fontSize: 18,
@@ -565,7 +565,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -574,7 +574,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
                     ),
@@ -638,7 +638,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -647,7 +647,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
                     ),
@@ -657,7 +657,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Switch(
               value: value,
-              activeColor: AppColors.primary,
+              activeThumbColor: AppColors.primary,
               onChanged: onChanged,
             ),
           ],

@@ -46,7 +46,7 @@ class AuthChoiceScreen extends StatelessWidget {
   }
 
   Widget _buildHeaderSection() {
-    return Column(
+    return const Column(
       children: [
         // Welcome Message
         Text(
@@ -58,7 +58,7 @@ class AuthChoiceScreen extends StatelessWidget {
           ),
         ),
         
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         
         // App Name
         Text(
@@ -71,7 +71,7 @@ class AuthChoiceScreen extends StatelessWidget {
           ),
         ),
         
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         
         // Tagline
         Text(
@@ -208,7 +208,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'DOCTORPOINT',
                     style: TextStyle(
                       fontSize: 14,
@@ -227,8 +227,8 @@ class AuthChoiceScreen extends StatelessWidget {
   }
 
   Widget _buildDescription() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
           Text(
@@ -242,7 +242,7 @@ class AuthChoiceScreen extends StatelessWidget {
             ),
           ),
           
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           
           Text(
             'Rejoignez notre communauté de patients et '
@@ -277,11 +277,11 @@ class AuthChoiceScreen extends StatelessWidget {
               elevation: 2,
               shadowColor: AppColors.primary.withOpacity(0.3),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.person_add_alt_1_rounded, size: 22),
-                const SizedBox(width: 12),
+                Icon(Icons.person_add_alt_1_rounded, size: 22),
+                SizedBox(width: 12),
                 Text(
                   'Créer un compte gratuitement',
                   style: TextStyle(
@@ -303,7 +303,7 @@ class AuthChoiceScreen extends StatelessWidget {
             onPressed: () => _navigateTo(context, const LoginScreen()),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.primary,
-              side: BorderSide(
+              side: const BorderSide(
                 color: AppColors.primary,
                 width: 1.5,
               ),
@@ -313,11 +313,11 @@ class AuthChoiceScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 18),
               backgroundColor: Colors.transparent,
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.login_rounded, size: 22),
-                const SizedBox(width: 12),
+                Icon(Icons.login_rounded, size: 22),
+                SizedBox(width: 12),
                 Text(
                   'Se connecter',
                   style: TextStyle(
@@ -343,8 +343,8 @@ class AuthChoiceScreen extends StatelessWidget {
             height: 1,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             'Accès rapide',
             style: TextStyle(
@@ -375,7 +375,7 @@ class AuthChoiceScreen extends StatelessWidget {
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(
+                  content: const Text(
                     'Mode invité activé - Fonctionnalités limitées',
                     style: TextStyle(color: Colors.white),
                   ),
@@ -394,11 +394,11 @@ class AuthChoiceScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.visibility_outlined, size: 20),
-                const SizedBox(width: 8),
+                Icon(Icons.visibility_outlined, size: 20),
+                SizedBox(width: 8),
                 Text(
                   'Continuer sans compte',
                   style: TextStyle(
@@ -424,8 +424,8 @@ class AuthChoiceScreen extends StatelessWidget {
                 color: AppColors.textSecondary.withOpacity(0.7),
                 height: 1.5,
               ),
-              children: [
-                const TextSpan(text: 'En continuant, vous acceptez nos '),
+              children: const [
+                TextSpan(text: 'En continuant, vous acceptez nos '),
                 TextSpan(
                   text: 'Conditions d\'utilisation',
                   style: TextStyle(
@@ -434,7 +434,7 @@ class AuthChoiceScreen extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                const TextSpan(text: ' et notre '),
+                TextSpan(text: ' et notre '),
                 TextSpan(
                   text: 'Politique de confidentialité',
                   style: TextStyle(
@@ -443,7 +443,7 @@ class AuthChoiceScreen extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                const TextSpan(text: '.'),
+                TextSpan(text: '.'),
               ],
             ),
           ),

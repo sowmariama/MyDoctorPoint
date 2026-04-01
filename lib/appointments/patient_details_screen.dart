@@ -48,7 +48,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Informations patient',
           style: TextStyle(
             color: Colors.white,
@@ -100,14 +100,14 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                             color: AppColors.primary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.medical_services_rounded,
                             color: AppColors.primary,
                             size: 28,
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Expanded(
+                        const Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -119,7 +119,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                                   color: AppColors.textPrimary,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              SizedBox(height: 4),
                               Text(
                                 'Vérifiez les détails avant paiement',
                                 style: TextStyle(
@@ -138,7 +138,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                     _infoRow(Icons.access_time_rounded, 'Heure', widget.time),
                     _infoRow(Icons.medical_services_outlined, 'Type', consultationTypeLabel),
                     const SizedBox(height: 20),
-                    Divider(
+                    const Divider(
                       color: AppColors.border,
                       height: 1,
                     ),
@@ -146,7 +146,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Total à payer',
                           style: TextStyle(
                             fontSize: 16,
@@ -156,7 +156,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                         ),
                         Text(
                           '${widget.price} FCFA',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
                             color: AppColors.primary,
@@ -171,7 +171,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               const SizedBox(height: 32),
 
               /// Patient Information Title
-              Text(
+              const Text(
                 'Informations personnelles',
                 style: TextStyle(
                   fontSize: 20,
@@ -180,7 +180,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
+              const Text(
                 'Remplissez vos informations pour la consultation',
                 style: TextStyle(
                   fontSize: 14,
@@ -191,7 +191,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               const SizedBox(height: 24),
 
               /// Full Name Field
-              Text(
+              const Text(
                 'Nom complet *',
                 style: TextStyle(
                   fontSize: 14,
@@ -219,7 +219,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                   prefixIcon: Container(
                     margin: const EdgeInsets.only(right: 12),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       border: Border(
                         right: BorderSide(
                           color: AppColors.border,
@@ -227,7 +227,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                         ),
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person_rounded,
                       color: AppColors.primary,
                     ),
@@ -248,7 +248,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               const SizedBox(height: 20),
 
               /// Age Field
-              Text(
+              const Text(
                 'Âge *',
                 style: TextStyle(
                   fontSize: 14,
@@ -278,7 +278,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                   prefixIcon: Container(
                     margin: const EdgeInsets.only(right: 12),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       border: Border(
                         right: BorderSide(
                           color: AppColors.border,
@@ -286,7 +286,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                         ),
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.cake_rounded,
                       color: AppColors.primary,
                     ),
@@ -307,7 +307,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               const SizedBox(height: 20),
 
               /// Gender Field
-              Text(
+              const Text(
                 'Genre *',
                 style: TextStyle(
                   fontSize: 14,
@@ -329,8 +329,8 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                   child: DropdownButton<String>(
                     value: gender,
                     isExpanded: true,
-                    icon: Padding(
-                      padding: const EdgeInsets.only(right: 16),
+                    icon: const Padding(
+                      padding: EdgeInsets.only(right: 16),
                       child: Icon(
                         Icons.expand_more_rounded,
                         color: AppColors.textPrimary,
@@ -358,7 +358,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                       }
                     },
                     dropdownColor: Colors.white,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 15,
                     ),
@@ -399,14 +399,14 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                     elevation: 0,
                     shadowColor: Colors.transparent,
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.payments_rounded,
                         size: 22,
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Text(
                         'Procéder au paiement',
                         style: TextStyle(
@@ -433,14 +433,14 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.arrow_back_rounded,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         'Retour',
                         style: TextStyle(
@@ -485,7 +485,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               children: [
                 Text(
                   label,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
                     color: AppColors.textSecondary,
                   ),
@@ -493,7 +493,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,

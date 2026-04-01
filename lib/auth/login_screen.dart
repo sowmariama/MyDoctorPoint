@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextButton.styleFrom(
                             foregroundColor: AppColors.primary,
                           ),
-                          child: Text(
+                          child: const Text(
                             'Mot de passe oublié ?',
                             style: TextStyle(
                               fontSize: 14,
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: AppColors.textPrimary,
             size: 28,
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
         
         const SizedBox(height: 16),
         
-        Text(
+        const Text(
           'Bienvenue de retour',
           style: TextStyle(
             fontSize: 28,
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         
         const SizedBox(height: 8),
         
-        Text(
+        const Text(
           'Connectez-vous à votre compte DoctorPoint',
           style: TextStyle(
             fontSize: 16,
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 1,
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'DOCTORPOINT',
                     style: TextStyle(
                       fontSize: 12,
@@ -219,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Adresse email',
           style: TextStyle(
             fontSize: 14,
@@ -247,7 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -255,7 +255,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.email_rounded,
                 color: AppColors.primary,
               ),
@@ -280,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Mot de passe',
           style: TextStyle(
             fontSize: 14,
@@ -308,7 +308,7 @@ class _LoginScreenState extends State<LoginScreen> {
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(
                     color: AppColors.border,
@@ -316,7 +316,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.lock_rounded,
                 color: AppColors.primary,
               ),
@@ -363,7 +363,7 @@ class _LoginScreenState extends State<LoginScreen> {
           shadowColor: AppColors.primary.withOpacity(0.3),
         ),
         child: loading
-            ? SizedBox(
+            ? const SizedBox(
                 height: 24,
                 width: 24,
                 child: CircularProgressIndicator(
@@ -371,11 +371,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   strokeWidth: 2.5,
                 ),
               )
-            : Row(
+            : const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.login_rounded, size: 22),
-                  const SizedBox(width: 12),
+                  Icon(Icons.login_rounded, size: 22),
+                  SizedBox(width: 12),
                   Text(
                     'Se connecter',
                     style: TextStyle(
@@ -390,7 +390,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildDivider() {
-    return Row(
+    return const Row(
       children: [
         Expanded(
           child: Divider(
@@ -399,7 +399,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             'Première connexion ?',
             style: TextStyle(
@@ -423,7 +423,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'Pas encore de compte ? ',
           style: TextStyle(
             color: AppColors.textSecondary,
@@ -443,7 +443,7 @@ class _LoginScreenState extends State<LoginScreen> {
             foregroundColor: AppColors.primary,
             padding: EdgeInsets.zero,
           ),
-          child: Text(
+          child: const Text(
             'Créer un compte',
             style: TextStyle(
               fontSize: 15,
@@ -462,34 +462,34 @@ class _LoginScreenState extends State<LoginScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        title: Text(
+        title: const Text(
           'Réinitialiser le mot de passe',
           style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
-        content: Text(
+        content: const Text(
           'Un lien de réinitialisation sera envoyé à votre adresse email.',
           style: TextStyle(color: AppColors.textSecondary),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Annuler'),
+            child: const Text('Annuler'),
           ),
           ElevatedButton(
             onPressed: () {
               // TODO: Implémenter la réinitialisation
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Fonctionnalité à venir'),
                   backgroundColor: AppColors.primary,
                 ),
               );
             },
-            child: Text('Envoyer'),
+            child: const Text('Envoyer'),
           ),
         ],
       ),
@@ -520,7 +520,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: const Text(
             'Identifiants incorrects. Veuillez réessayer.',
             style: TextStyle(color: Colors.white),
           ),
@@ -535,7 +535,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: const Text(
             'Erreur de connexion',
             style: TextStyle(color: Colors.white),
           ),

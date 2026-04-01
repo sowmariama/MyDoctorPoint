@@ -1,4 +1,3 @@
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
@@ -17,7 +16,7 @@ class InvoiceService {
         build: (context) => pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.start,
           children: [
-            pw.Text('FACTURE', style: pw.TextStyle(fontSize: 24)),
+            pw.Text('FACTURE', style: const pw.TextStyle(fontSize: 24)),
             pw.SizedBox(height: 20),
             pw.Text('Médecin : $doctor'),
             pw.Text('Date : $date'),

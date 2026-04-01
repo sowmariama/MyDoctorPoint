@@ -293,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Center(
                   child: Text(
                     _userInitial ?? 'U',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
@@ -311,14 +311,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 'Bonjour, ${_getFirstName()} 👋',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.textSecondary,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
+              const Text(
                 'Trouvez le meilleur\nsoin médical',
                 style: TextStyle(
                   fontSize: 18,
@@ -364,7 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.notifications_outlined,
                       color: AppColors.textPrimary,
                       size: 24,
@@ -429,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           prefixIcon: Container(
             margin: const EdgeInsets.only(left: 16, right: 12),
-            child: Icon(
+            child: const Icon(
               Icons.search_rounded,
               color: AppColors.primary,
               size: 24,
@@ -444,7 +444,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     _searchController.clear();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close_rounded,
                     color: AppColors.textSecondary,
                   ),
@@ -472,7 +472,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// Medical Services
-          Text(
+          const Text(
             'Services médicaux',
             style: TextStyle(
               fontSize: 20,
@@ -489,7 +489,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Médecins populaires',
                 style: TextStyle(
                   fontSize: 20,
@@ -499,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Voir tout',
                   style: TextStyle(
                     color: AppColors.primary,
@@ -526,26 +526,26 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         'icon': Icons.video_camera_back_rounded,
         'label': 'Consultation\nen ligne',
-        'color': Color(0xFFE8F5E9),
-        'gradient': [Color(0xFFE8F5E9), Color(0xFFC8E6C9)],
+        'color': const Color(0xFFE8F5E9),
+        'gradient': [const Color(0xFFE8F5E9), const Color(0xFFC8E6C9)],
       },
       {
         'icon': Icons.local_hospital_rounded,
         'label': 'Médecine\ngénérale',
-        'color': Color(0xFFE3F2FD),
-        'gradient': [Color(0xFFE3F2FD), Color(0xFFBBDEFB)],
+        'color': const Color(0xFFE3F2FD),
+        'gradient': [const Color(0xFFE3F2FD), const Color(0xFFBBDEFB)],
       },
       {
         'icon': Icons.medical_services_rounded,
         'label': 'Spécialistes',
-        'color': Color(0xFFF3E5F5),
-        'gradient': [Color(0xFFF3E5F5), Color(0xFFE1BEE7)],
+        'color': const Color(0xFFF3E5F5),
+        'gradient': [const Color(0xFFF3E5F5), const Color(0xFFE1BEE7)],
       },
       {
         'icon': Icons.local_pharmacy_rounded,
         'label': 'Pharmacie',
-        'color': Color(0xFFFFF3E0),
-        'gradient': [Color(0xFFFFF3E0), Color(0xFFFFCC80)],
+        'color': const Color(0xFFFFF3E0),
+        'gradient': [const Color(0xFFFFF3E0), const Color(0xFFFFCC80)],
       },
     ];
 
@@ -604,7 +604,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       service['label'] as String,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -626,7 +626,7 @@ class _HomeScreenState extends State<HomeScreen> {
       stream: FirebaseFirestore.instance.collection('doctors').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(color: AppColors.primary),
           );
         }
@@ -699,7 +699,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ? Center(
                               child: Text(
                                 fullName[0],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 36,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.primary,
@@ -723,7 +723,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Expanded(
                                   child: Text(
                                     fullName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.textPrimary,
@@ -743,7 +743,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: Text(
                                     '$experience ans',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                       color: AppColors.primary,
@@ -758,7 +758,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             /// Specialty
                             Text(
                               specialty,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.w600,
@@ -770,7 +770,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             /// Hospital
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.location_on_outlined,
                                   size: 16,
                                   color: AppColors.textSecondary,
@@ -779,7 +779,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Expanded(
                                   child: Text(
                                     hospital,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 13,
                                       color: AppColors.textSecondary,
                                     ),
@@ -798,7 +798,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.star_rounded,
                                       color: Color(0xFFFFB800),
                                       size: 20,
@@ -806,7 +806,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(width: 6),
                                     Text(
                                       rating.toStringAsFixed(1),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w700,
                                         color: AppColors.textPrimary,
@@ -814,8 +814,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      '(${experience}+)',
-                                      style: TextStyle(
+                                      '($experience+)',
+                                      style: const TextStyle(
                                         fontSize: 13,
                                         color: AppColors.textSecondary,
                                       ),
@@ -830,7 +830,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: AppColors.primary,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_forward_rounded,
                                     color: Colors.white,
                                     size: 20,
@@ -857,7 +857,7 @@ class _HomeScreenState extends State<HomeScreen> {
       stream: FirebaseFirestore.instance.collection('doctors').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(color: AppColors.primary),
           );
         }
@@ -892,7 +892,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     '${filteredDoctors.length} résultat${filteredDoctors.length > 1 ? 's' : ''} trouvé${filteredDoctors.length > 1 ? 's' : ''}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
@@ -907,12 +907,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                       _searchController.clear();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close_rounded,
                       size: 18,
                       color: AppColors.textSecondary,
                     ),
-                    label: Text(
+                    label: const Text(
                       'Effacer',
                       style: TextStyle(
                         color: AppColors.textSecondary,
@@ -978,7 +978,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? Center(
                                 child: Text(
                                   fullName[0],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: AppColors.primary,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -989,7 +989,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       title: Text(
                         fullName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
                         ),
@@ -1000,7 +1000,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 4),
                           Text(
                             specialty,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               color: AppColors.textSecondary,
                             ),
@@ -1021,7 +1021,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.star_rounded,
                                 size: 16,
                                 color: Color(0xFFFFB800),
@@ -1029,7 +1029,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(width: 4),
                               Text(
                                 rating.toStringAsFixed(1),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -1044,7 +1044,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: AppColors.primary,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_forward_rounded,
                               color: Colors.white,
                               size: 18,
@@ -1075,14 +1075,14 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.primary.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.medical_services_outlined,
               size: 50,
               color: AppColors.primary,
             ),
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             'Aucun médecin disponible',
             style: TextStyle(
               fontSize: 18,
@@ -1091,8 +1091,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
             child: Text(
               'Les médecins seront bientôt ajoutés à la plateforme.',
               textAlign: TextAlign.center,
@@ -1118,14 +1118,14 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.primary.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.search_rounded,
               size: 48,
               color: AppColors.primary,
             ),
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             'Rechercher des médecins',
             style: TextStyle(
               fontSize: 18,
@@ -1134,7 +1134,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Tapez un nom, une spécialité ou un hôpital',
             style: TextStyle(
               color: AppColors.textSecondary,
@@ -1157,14 +1157,14 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.primary.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.search_off_rounded,
               size: 48,
               color: AppColors.primary,
             ),
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             'Aucun résultat',
             style: TextStyle(
               fontSize: 18,
@@ -1178,7 +1178,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               'Aucun médecin ne correspond à "$_searchQuery"',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.textSecondary,
               ),
             ),
@@ -1200,7 +1200,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             ),
-            child: Text('Voir tous les médecins'),
+            child: const Text('Voir tous les médecins'),
           ),
         ],
       ),

@@ -1,5 +1,5 @@
 import 'package:doctor_point/core/constants/app_colors.dart';
-import 'package:doctor_point/constants/app_strings.dart'; // Nouvel import
+import 'package:doctor_point/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import '../auth/auth_choice_screen.dart';
 
@@ -14,15 +14,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   int _currentIndex = 0;
 
-  // Les données sont maintenant dans AppStrings.onboardingPages
-  final List<Map<String, String>> _pages = AppStrings.onboardingPages.map((page) {
-    // On ajoute le chemin de l'image (identique à avant)
-    return {
-      'image': 'assets/images/onboard${_pages.indexOf(page) + 1}.png',
-      'title': page['title']!,
-      'desc': page['description']!,
-    };
-  }).toList();
+  // ✅ FIX: On utilise 'index' de la boucle au lieu de _pages.indexOf()
+  // qui appelait _pages lui-même → boucle infinie !
+  List<Map<String, String>> get _pages {
+    const source = AppStrings.onboardingPages;
+    return List.generate(source.length, (index) {
+      return {
+        'image': 'assets/images/onboard${index + 1}.png',
+        'title': source[index]['title']!,
+        'desc': source[index]['description']!,
+      };
+    });
+  }
 
   @override
   void dispose() {
@@ -44,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.only(top: 8.0, right: 16.0),
                 child: TextButton(
                   onPressed: _goToAuthScreen,
-                  child: Text(
+                  child: const Text(
                     AppStrings.skip,
                     style: TextStyle(
                       color: AppColors.textSecondary,
@@ -63,12 +66,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   setState(() => _currentIndex = index);
                 },
                 itemBuilder: (context, index) {
-                  return _buildPage(_pages[index]);
+                  return _buildPage(_pages[index], index);
                 },
               ),
             ),
 
-            // Bottom Navigation & Button Section
             _buildBottomSection(),
           ],
         ),
@@ -76,13 +78,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage(Map<String, String> page) {
+  // ✅ FIX: On passe 'pageIndex' en paramètre pour éviter tout appel à indexOf()
+  Widget _buildPage(Map<String, String> page, int pageIndex) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Animated Image Container (identique)
           Container(
             height: 300,
             decoration: BoxDecoration(
@@ -91,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  AppColors.primary.withOpacity(0.1),
+                  AppColors.primary.withValues(alpha: 0.1),
                   Colors.transparent,
                 ],
               ),
@@ -107,7 +109,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     height: 100,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.primary.withOpacity(0.05),
+                      color: AppColors.primary.withValues(alpha: 0.05),
                     ),
                   ),
                 ),
@@ -119,7 +121,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     height: 80,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.primary.withOpacity(0.05),
+                      color: AppColors.primary.withValues(alpha: 0.05),
                     ),
                   ),
                 ),
@@ -142,7 +144,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Text(
                 page['title']!,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
                   color: AppColors.textPrimary,
@@ -150,9 +152,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               const SizedBox(height: 12),
+              // ✅ FIX: On utilise 'pageIndex' au lieu de _pages.indexOf(page)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500),
-                width: _currentIndex == _pages.indexOf(page) ? 80 : 0,
+                width: _currentIndex == pageIndex ? 80 : 0,
                 height: 3,
                 decoration: BoxDecoration(
                   color: AppColors.primary,
@@ -169,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Text(
               page['desc']!,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 color: AppColors.textSecondary,
                 height: 1.6,
@@ -203,7 +206,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   boxShadow: _currentIndex == index
                       ? [
                           BoxShadow(
-                            color: AppColors.primary.withOpacity(0.3),
+                            color: AppColors.primary.withValues(alpha: 0.3),
                             blurRadius: 8,
                             spreadRadius: 1,
                           ),
@@ -231,7 +234,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   horizontal: 32,
                 ),
                 elevation: 2,
-                shadowColor: AppColors.primary.withOpacity(0.3),
+                shadowColor: AppColors.primary.withValues(alpha: 0.3),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +267,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   curve: Curves.easeInOut,
                 );
               },
-              child: Text(
+              child: const Text(
                 AppStrings.back,
                 style: TextStyle(
                   color: AppColors.textSecondary,

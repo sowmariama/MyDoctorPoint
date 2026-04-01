@@ -53,11 +53,11 @@ class CallEndedScreen extends StatelessWidget {
                     Container(
                       width: 110,
                       height: 110,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.check_rounded,
                         size: 50,
                         color: Colors.white,
@@ -72,7 +72,7 @@ class CallEndedScreen extends StatelessWidget {
               /// Title
               Text(
                 getTypeLabel(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
                   color: AppColors.textPrimary,
@@ -83,7 +83,7 @@ class CallEndedScreen extends StatelessWidget {
               const SizedBox(height: 8),
 
               /// Subtitle
-              Text(
+              const Text(
                 'Terminé avec succès',
                 style: TextStyle(
                   fontSize: 16,
@@ -111,7 +111,7 @@ class CallEndedScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.medical_services_rounded,
                       color: AppColors.primary,
                       size: 20,
@@ -119,7 +119,7 @@ class CallEndedScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     Text(
                       'Avec Dr. $doctorName',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -154,14 +154,14 @@ class CallEndedScreen extends StatelessWidget {
                     elevation: 0,
                     shadowColor: Colors.transparent,
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.home_rounded,
                         size: 22,
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Text(
                         'Retour à l\'accueil',
                         style: TextStyle(
@@ -185,7 +185,7 @@ class CallEndedScreen extends StatelessWidget {
                     // TODO: Navigate to review screen
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(
+                        content: const Text(
                           'Donnez votre avis sur la consultation',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -203,14 +203,14 @@ class CallEndedScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.star_rate_rounded,
                         size: 20,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         'Noter la consultation',
                         style: TextStyle(

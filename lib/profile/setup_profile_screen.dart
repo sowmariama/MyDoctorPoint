@@ -33,7 +33,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
+            colorScheme: const ColorScheme.light(
               primary: AppColors.primary,
               onPrimary: Colors.white,
               surface: Colors.white,
@@ -61,7 +61,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
       if (gender == null || birthDate == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Veuillez compléter tous les champs'),
+            content: const Text('Veuillez compléter tous les champs'),
             backgroundColor: Colors.red.shade600,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(
@@ -126,14 +126,14 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                     children: [
                       IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_back_rounded,
                           color: AppColors.textPrimary,
                           size: 28,
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text(
+                      const Text(
                         'Compléter votre profil',
                         style: TextStyle(
                           fontSize: 22,
@@ -146,7 +146,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
 
                   const SizedBox(height: 8),
 
-                  Text(
+                  const Text(
                     'Dernière étape pour accéder à DoctorPoint',
                     style: TextStyle(
                       fontSize: 15,
@@ -180,7 +180,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         const SizedBox(height: 16),
-                        Text(
+                        const Text(
                           'Étape 3/3 : Informations personnelles',
                           style: TextStyle(
                             fontSize: 16,
@@ -189,7 +189,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Text(
+                        const Text(
                           'Ces informations nous aident à mieux vous accompagner',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -204,7 +204,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                   const SizedBox(height: 32),
 
                   /// Gender Field
-                  Text(
+                  const Text(
                     'Genre *',
                     style: TextStyle(
                       fontSize: 14,
@@ -226,15 +226,15 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                       child: DropdownButton<String>(
                         value: gender,
                         isExpanded: true,
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 16),
+                        icon: const Padding(
+                          padding: EdgeInsets.only(right: 16),
                           child: Icon(
                             Icons.expand_more_rounded,
                             color: AppColors.textPrimary,
                           ),
                         ),
-                        hint: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                        hint: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             'Sélectionnez votre genre',
                             style: TextStyle(
@@ -271,7 +271,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                           }
                         },
                         dropdownColor: Colors.white,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 15,
                         ),
@@ -282,7 +282,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                   const SizedBox(height: 20),
 
                   /// Birth Date Field
-                  Text(
+                  const Text(
                     'Date de naissance *',
                     style: TextStyle(
                       fontSize: 14,
@@ -305,7 +305,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                       ),
                       child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.calendar_month_rounded,
                             color: AppColors.primary,
                           ),
@@ -325,7 +325,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                           if (birthDate != null)
                             IconButton(
                               onPressed: () => setState(() => birthDate = null),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.close_rounded,
                                 color: AppColors.textSecondary,
                                 size: 20,
@@ -339,7 +339,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                   const SizedBox(height: 20),
 
                   /// Address Field
-                  Text(
+                  const Text(
                     'Adresse',
                     style: TextStyle(
                       fontSize: 14,
@@ -358,7 +358,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                       prefixIcon: Container(
                         margin: const EdgeInsets.only(right: 12),
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           border: Border(
                             right: BorderSide(
                               color: AppColors.border,
@@ -366,7 +366,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                             ),
                           ),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.location_on_rounded,
                           color: AppColors.primary,
                         ),
@@ -402,7 +402,7 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                         shadowColor: Colors.transparent,
                       ),
                       child: loading
-                          ? SizedBox(
+                          ? const SizedBox(
                               width: 24,
                               height: 24,
                               child: CircularProgressIndicator(
@@ -410,14 +410,14 @@ class _SetupProfileScreenState extends State<SetupProfileScreen> {
                                 strokeWidth: 2.5,
                               ),
                             )
-                          : Row(
+                          : const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   Icons.check_circle_rounded,
                                   size: 22,
                                 ),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12),
                                 Text(
                                   'Terminer la configuration',
                                   style: TextStyle(
