@@ -1,0 +1,104 @@
+{
+  "doctors": [
+    {
+      "fullName": "Dr. Fatou Ndiaye",
+      "specialty": "Cardiologue",
+      "hospital": "Hôpital Principal de Dakar",
+      "about": "Spécialiste en cardiologie avec 12 ans d'expérience. Diplômée de l'Université Cheikh Anta Diop. Prise en charge des pathologies cardiaques, hypertension et prévention.",
+      "photoUrls": "https://randomuser.me/api/portraits/women/1.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "jeu.", "ven."],
+      "workingHours": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+      "fees": {"voice": 10000, "message": 5000, "video": 15000}
+    },
+    {
+      "fullName": "Dr. Mamadou Diallo",
+      "specialty": "Dentiste",
+      "hospital": "Clinique Dentaire Fann",
+      "about": "Chirurgien-dentiste, spécialiste en implantologie et esthétique dentaire. Plus de 8 ans d'expérience.",
+      "photoUrls": "https://randomuser.me/api/portraits/men/2.jpg",
+      "workingDays": ["mar.", "mer.", "jeu.", "ven.", "sam."],
+      "workingHours": ["10:00", "11:00", "14:00", "15:00", "16:00"],
+      "fees": {"voice": 8000, "message": 4000, "video": 12000}
+    },
+    {
+      "fullName": "Dr. Aissatou Sow",
+      "specialty": "Pédiatre",
+      "hospital": "Centre Hospitalier pour Enfants",
+      "about": "Pédiatre, experte en développement de l'enfant et vaccinations. Consultations en ligne pour suivi des nourrissons et enfants.",
+      "photoUrls": "https://randomuser.me/api/portraits/women/2.jpg",
+      "workingDays": ["lun.", "mer.", "ven."],
+      "workingHours": ["08:30", "09:30", "10:30", "14:00", "15:30"],
+      "fees": {"voice": 7000, "message": 3500, "video": 10000}
+    },
+    {
+      "fullName": "Dr. Cheikh Mbaye",
+      "specialty": "Généraliste",
+      "hospital": "Cabinet Médical Mermoz",
+      "about": "Médecin généraliste, consultations à domicile disponibles. Prise en charge des pathologies courantes, suivi de santé.",
+      "photoUrls": "https://randomuser.me/api/portraits/men/3.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+      "workingHours": ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+      "fees": {"voice": 6000, "message": 3000, "video": 9000}
+    },
+    {
+      "fullName": "Dr. Marie Diouf",
+      "specialty": "Gynécologue",
+      "hospital": "Clinique de la Femme",
+      "about": "Gynécologue-obstétricienne, suivi de grossesse, fertilité et consultations gynécologiques.",
+      "photoUrls": "https://randomuser.me/api/portraits/women/3.jpg",
+      "workingDays": ["lun.", "mar.", "jeu.", "ven."],
+      "workingHours": ["09:00", "10:00", "11:00", "14:00", "15:00"],
+      "fees": {"voice": 12000, "message": 6000, "video": 18000}
+    },
+    {
+      "fullName": "Dr. Ousmane Fall",
+      "specialty": "Ophtalmologue",
+      "hospital": "Centre Ophtalmologique de Dakar",
+      "about": "Spécialiste des maladies des yeux, chirurgie de la cataracte, troubles de la vision.",
+      "photoUrls": "https://randomuser.me/api/portraits/men/4.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "jeu."],
+      "workingHours": ["09:30", "10:30", "11:30", "14:30", "15:30"],
+      "fees": {"voice": 9000, "message": 4500, "video": 13500}
+    },
+    {
+      "fullName": "Dr. Khady Niang",
+      "specialty": "Dermatologue",
+      "hospital": "Cabinet Dermatologique Plateau",
+      "about": "Dermatologue, traitement des maladies de peau, acné, eczéma, et suivi esthétique.",
+      "photoUrls": "https://randomuser.me/api/portraits/women/4.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "ven.", "sam."],
+      "workingHours": ["09:00", "10:00", "11:00", "14:00", "15:00"],
+      "fees": {"voice": 8000, "message": 4000, "video": 12000}
+    },
+    {
+      "fullName": "Dr. Ibrahima Sarr",
+      "specialty": "Psychiatre",
+      "hospital": "Centre de Santé Mentale",
+      "about": "Psychiatre, consultations pour dépression, anxiété, troubles du sommeil, suivi psychothérapique.",
+      "photoUrls": "https://randomuser.me/api/portraits/men/5.jpg",
+      "workingDays": ["lun.", "mar.", "jeu.", "ven."],
+      "workingHours": ["10:00", "11:00", "14:00", "15:00", "16:00"],
+      "fees": {"voice": 11000, "message": 5500, "video": 16500}
+    },
+    {
+      "fullName": "Dr. Aminata Ba",
+      "specialty": "Nutritionniste",
+      "hospital": "Centre Diététique et Nutrition",
+      "about": "Diététicienne-nutritionniste, aide à la perte de poids, régime équilibré, suivi personnalisé.",
+      "photoUrls": "https://randomuser.me/api/portraits/women/5.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "jeu.", "ven."],
+      "workingHours": ["09:00", "10:00", "11:00", "14:00", "15:00"],
+      "fees": {"voice": 5000, "message": 2500, "video": 7500}
+    },
+    {
+      "fullName": "Dr. Abdoulaye Gueye",
+      "specialty": "Urologue",
+      "hospital": "Clinique Spécialisée de l'Urologie",
+      "about": "Urologue, traitement des infections urinaires, problèmes de prostate, consultations masculines.",
+      "photoUrls": "https://randomuser.me/api/portraits/men/6.jpg",
+      "workingDays": ["lun.", "mar.", "mer.", "jeu.", "ven."],
+      "workingHours": ["09:30", "10:30", "11:30", "14:30", "15:30"],
+      "fees": {"voice": 10000, "message": 5000, "video": 15000}
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/constants/app_colors.dart';
 import 'payment_screen.dart';
+import '../constants/app_strings.dart';
 
 class PatientDetailsScreen extends StatefulWidget {
   final String doctorId;
@@ -48,23 +49,12 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text(
-          'Informations patient',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        title: Text(AppStrings.patientInfo, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20),
-          ),
-        ),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -74,19 +64,13 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Appointment Summary Card
+              // Appointment Summary Card
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 30,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 30, offset: const Offset(0, 10))],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,37 +80,17 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                         Container(
                           width: 56,
                           height: 56,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: const Icon(
-                            Icons.medical_services_rounded,
-                            color: AppColors.primary,
-                            size: 28,
-                          ),
+                          decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(16)),
+                          child: const Icon(Icons.medical_services_rounded, color: AppColors.primary, size: 28),
                         ),
                         const SizedBox(width: 16),
                         const Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Résumé du rendez-vous',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.textPrimary,
-                                ),
-                              ),
+                              Text(AppStrings.appointmentSummary, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
                               SizedBox(height: 4),
-                              Text(
-                                'Vérifiez les détails avant paiement',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textSecondary,
-                                ),
-                              ),
+                              Text('Vérifiez les détails avant paiement', style: TextStyle(fontSize: 13, color: AppColors.textSecondary)),
                             ],
                           ),
                         ),
@@ -138,30 +102,13 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                     _infoRow(Icons.access_time_rounded, 'Heure', widget.time),
                     _infoRow(Icons.medical_services_outlined, 'Type', consultationTypeLabel),
                     const SizedBox(height: 20),
-                    const Divider(
-                      color: AppColors.border,
-                      height: 1,
-                    ),
+                    const Divider(color: AppColors.border, height: 1),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Total à payer',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.textPrimary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          '${widget.price} FCFA',
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.primary,
-                          ),
-                        ),
+                        const Text('Total à payer', style: TextStyle(fontSize: 16, color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
+                        Text('${widget.price} FCFA', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: AppColors.primary)),
                       ],
                     ),
                   ],
@@ -170,205 +117,86 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
 
               const SizedBox(height: 32),
 
-              /// Patient Information Title
-              const Text(
-                'Informations personnelles',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textPrimary,
-                ),
-              ),
+              Text(AppStrings.personalInfo, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
               const SizedBox(height: 8),
-              const Text(
-                'Remplissez vos informations pour la consultation',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary,
-                ),
-              ),
+              const Text('Remplissez vos informations pour la consultation', style: TextStyle(fontSize: 14, color: AppColors.textSecondary)),
 
               const SizedBox(height: 24),
 
-              /// Full Name Field
-              const Text(
-                'Nom complet *',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textPrimary,
-                ),
-              ),
+              // Full Name Field
+              Text(AppStrings.fullName, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
               const SizedBox(height: 8),
               TextFormField(
                 controller: nameCtrl,
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer votre nom complet';
-                  }
-                  if (value.split(' ').length < 2) {
-                    return 'Veuillez entrer votre nom et prénom';
-                  }
+                  if (value == null || value.isEmpty) return 'Veuillez entrer votre nom complet';
+                  if (value.split(' ').length < 2) return 'Veuillez entrer votre nom et prénom';
                   return null;
                 },
                 decoration: InputDecoration(
                   hintText: 'Ex: Jean Dupont',
-                  hintStyle: TextStyle(
-                    color: AppColors.textSecondary.withOpacity(0.6),
-                  ),
-                  prefixIcon: Container(
-                    margin: const EdgeInsets.only(right: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        right: BorderSide(
-                          color: AppColors.border,
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.person_rounded,
-                      color: AppColors.primary,
-                    ),
-                  ),
+                  hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
+                  prefixIcon: Container(margin: const EdgeInsets.only(right: 12), padding: const EdgeInsets.symmetric(horizontal: 16), decoration: const BoxDecoration(border: Border(right: BorderSide(color: AppColors.border, width: 1.5))), child: const Icon(Icons.person_rounded, color: AppColors.primary)),
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 18,
-                    horizontal: 20,
-                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
                 ),
               ),
 
               const SizedBox(height: 20),
 
-              /// Age Field
-              const Text(
-                'Âge *',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textPrimary,
-                ),
-              ),
+              // Age Field
+              const Text('Âge *', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
               const SizedBox(height: 8),
               TextFormField(
                 controller: ageCtrl,
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer votre âge';
-                  }
+                  if (value == null || value.isEmpty) return 'Veuillez entrer votre âge';
                   final age = int.tryParse(value);
-                  if (age == null || age < 1 || age > 120) {
-                    return 'Âge invalide';
-                  }
+                  if (age == null || age < 1 || age > 120) return 'Âge invalide';
                   return null;
                 },
                 decoration: InputDecoration(
                   hintText: 'Ex: 30',
-                  hintStyle: TextStyle(
-                    color: AppColors.textSecondary.withOpacity(0.6),
-                  ),
-                  prefixIcon: Container(
-                    margin: const EdgeInsets.only(right: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        right: BorderSide(
-                          color: AppColors.border,
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.cake_rounded,
-                      color: AppColors.primary,
-                    ),
-                  ),
+                  hintStyle: TextStyle(color: AppColors.textSecondary.withOpacity(0.6)),
+                  prefixIcon: Container(margin: const EdgeInsets.only(right: 12), padding: const EdgeInsets.symmetric(horizontal: 16), decoration: const BoxDecoration(border: Border(right: BorderSide(color: AppColors.border, width: 1.5))), child: const Icon(Icons.cake_rounded, color: AppColors.primary)),
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 18,
-                    horizontal: 20,
-                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
                 ),
               ),
 
               const SizedBox(height: 20),
 
-              /// Gender Field
-              const Text(
-                'Genre *',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textPrimary,
-                ),
-              ),
+              // Gender Field
+              const Text('Genre *', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
               const SizedBox(height: 8),
               Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: AppColors.border,
-                    width: 1.5,
-                  ),
-                ),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16), border: Border.all(color: AppColors.border, width: 1.5)),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     value: gender,
                     isExpanded: true,
-                    icon: const Padding(
-                      padding: EdgeInsets.only(right: 16),
-                      child: Icon(
-                        Icons.expand_more_rounded,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
+                    icon: const Padding(padding: EdgeInsets.only(right: 16), child: Icon(Icons.expand_more_rounded, color: AppColors.textPrimary)),
                     items: const [
-                      DropdownMenuItem(
-                        value: 'Homme',
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text('Homme'),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 'Femme',
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text('Femme'),
-                        ),
-                      ),
+                      DropdownMenuItem(value: 'Homme', child: Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Homme'))),
+                      DropdownMenuItem(value: 'Femme', child: Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Femme'))),
                     ],
                     onChanged: (value) {
-                      if (value != null) {
-                        setState(() => gender = value);
-                      }
+                      if (value != null) setState(() => gender = value);
                     },
                     dropdownColor: Colors.white,
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontSize: 15,
-                    ),
+                    style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
                   ),
                 ),
               ),
 
               const SizedBox(height: 40),
 
-              /// Proceed to Payment Button
+              // Proceed to Payment Button
               SizedBox(
                 width: double.infinity,
                 height: 60,
@@ -390,30 +218,13 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                       );
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                    shadowColor: Colors.transparent,
-                  ),
-                  child: const Row(
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)), elevation: 0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.payments_rounded,
-                        size: 22,
-                      ),
-                      SizedBox(width: 12),
-                      Text(
-                        'Procéder au paiement',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                      const Icon(Icons.payments_rounded, size: 22),
+                      const SizedBox(width: 12),
+                      Text(AppStrings.proceedToPayment, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                     ],
                   ),
                 ),
@@ -421,34 +232,16 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
 
               const SizedBox(height: 20),
 
-              /// Back Button
+              // Back Button
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.textSecondary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
+                  style: TextButton.styleFrom(foregroundColor: AppColors.textSecondary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.arrow_back_rounded,
-                        size: 20,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Retour',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
+                    children: [Icon(Icons.arrow_back_rounded, size: 20), SizedBox(width: 8), Text('Retour', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600))],
                   ),
                 ),
               ),
@@ -459,7 +252,6 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
     );
   }
 
-  /// 🔹 INFO ROW WIDGET
   Widget _infoRow(IconData icon, String label, String value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
@@ -468,37 +260,17 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              icon,
-              size: 20,
-              color: AppColors.primary,
-            ),
+            decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
+            child: Icon(icon, size: 20, color: AppColors.primary),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.textSecondary,
-                  ),
-                ),
+                Text(label, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
                 const SizedBox(height: 2),
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
+                Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
               ],
             ),
           ),

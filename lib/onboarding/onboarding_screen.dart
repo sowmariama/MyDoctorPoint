@@ -14,8 +14,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   int _currentIndex = 0;
 
-  // ✅ FIX: On utilise 'index' de la boucle au lieu de _pages.indexOf()
-  // qui appelait _pages lui-même → boucle infinie !
   List<Map<String, String>> get _pages {
     const source = AppStrings.onboardingPages;
     return List.generate(source.length, (index) {
@@ -40,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Skip Button (Top Right)
+            // Skip Button
             Align(
               alignment: Alignment.topRight,
               child: Padding(
@@ -58,6 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
 
+            // PageView principal
             Expanded(
               child: PageView.builder(
                 controller: _controller,
@@ -78,13 +77,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  // ✅ FIX: On passe 'pageIndex' en paramètre pour éviter tout appel à indexOf()
+  // ==================== PAGE INDIVIDUELLE ====================
   Widget _buildPage(Map<String, String> page, int pageIndex) {
-    return Padding(
+    return SingleChildScrollView(          // ← AJOUT IMPORTANT
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 20),        // ← Petit espace en haut
+
+          // Image Container
           Container(
             height: 300,
             decoration: BoxDecoration(
@@ -139,6 +141,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 40),
 
+          // Titre + Indicateur
           Column(
             children: [
               Text(
@@ -152,7 +155,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              // ✅ FIX: On utilise 'pageIndex' au lieu de _pages.indexOf(page)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 500),
                 width: _currentIndex == pageIndex ? 80 : 0,
@@ -167,6 +169,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 20),
 
+          // Description
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
@@ -179,16 +182,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
+
+          const SizedBox(height: 60),   // ← Espace en bas pour éviter l'overflow
         ],
       ),
     );
   }
 
+  // ==================== SECTION DU BAS ====================
   Widget _buildBottomSection() {
     return Container(
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
+          // Indicateurs (dots)
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
@@ -219,6 +226,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           const SizedBox(height: 32),
 
+          // Bouton principal
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -229,10 +237,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 18,
-                  horizontal: 32,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 18),
                 elevation: 2,
                 shadowColor: AppColors.primary.withValues(alpha: 0.3),
               ),
@@ -298,10 +303,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       PageRouteBuilder(
         pageBuilder: (_, __, ___) => const AuthChoiceScreen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
         transitionDuration: const Duration(milliseconds: 400),
       ),

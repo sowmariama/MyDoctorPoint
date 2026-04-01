@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../services/auth_service.dart';
 import '../home/home_screen.dart';
 import '../core/constants/app_colors.dart';
+import '../constants/app_strings.dart'; // Import des constantes
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,17 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Header
                 _buildHeader(),
-                
                 const SizedBox(height: 40),
-                
-                // Logo Card
                 _buildLogoCard(),
-                
                 const SizedBox(height: 40),
-                
-                // Login Form
                 Form(
                   key: _formKey,
                   child: Column(
@@ -51,8 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
                       _buildPasswordField(),
                       const SizedBox(height: 12),
-                      
-                      // Forgot Password
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -60,32 +52,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextButton.styleFrom(
                             foregroundColor: AppColors.primary,
                           ),
-                          child: const Text(
-                            'Mot de passe oublié ?',
-                            style: TextStyle(
+                          child: Text(
+                            AppStrings.forgotPassword,
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
                       ),
-                      
                       const SizedBox(height: 32),
-                      
-                      // Login Button
                       _buildLoginButton(),
                     ],
                   ),
                 ),
-                
                 const SizedBox(height: 40),
-                
-                // Divider
                 _buildDivider(),
-                
                 const SizedBox(height: 32),
-                
-                // Register Link
                 _buildRegisterLink(),
               ],
             ),
@@ -109,24 +92,20 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
-        
         const SizedBox(height: 16),
-        
-        const Text(
-          'Bienvenue de retour',
-          style: TextStyle(
+        Text(
+          AppStrings.welcomeBack,
+          style: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w800,
             color: AppColors.textPrimary,
             letterSpacing: -0.5,
           ),
         ),
-        
         const SizedBox(height: 8),
-        
-        const Text(
-          'Connectez-vous à votre compte DoctorPoint',
-          style: TextStyle(
+        Text(
+          AppStrings.accessYourSpace,
+          style: const TextStyle(
             fontSize: 16,
             color: AppColors.textSecondary,
             fontWeight: FontWeight.w400,
@@ -157,7 +136,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: Stack(
         children: [
-          // Decorative Elements
           Positioned(
             top: -10,
             right: -10,
@@ -170,8 +148,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          
-          // Logo & Brand
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -181,9 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 60,
                   fit: BoxFit.contain,
                 ),
-                
                 const SizedBox(height: 12),
-                
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -197,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 1,
                     ),
                   ),
-                  child: const Text(
-                    'DOCTORPOINT',
-                    style: TextStyle(
+                  child: Text(
+                    AppStrings.appNameUpper, // constante
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
@@ -219,17 +193,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Adresse email',
-          style: TextStyle(
+        Text(
+          AppStrings.email,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
           ),
         ),
-        
         const SizedBox(height: 8),
-        
         TextFormField(
           controller: emailCtrl,
           keyboardType: TextInputType.emailAddress,
@@ -243,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
             return null;
           },
           decoration: InputDecoration(
-            hintText: 'exemple@email.com',
+            hintText: AppStrings.emailHint,
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -280,17 +252,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Mot de passe',
-          style: TextStyle(
+        Text(
+          AppStrings.password,
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
           ),
         ),
-        
         const SizedBox(height: 8),
-        
         TextFormField(
           controller: passCtrl,
           obscureText: hidePassword,
@@ -304,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
             return null;
           },
           decoration: InputDecoration(
-            hintText: '••••••••',
+            hintText: AppStrings.passwordHint,
             prefixIcon: Container(
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -371,14 +341,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   strokeWidth: 2.5,
                 ),
               )
-            : const Row(
+            : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.login_rounded, size: 22),
-                  SizedBox(width: 12),
+                  const Icon(Icons.login_rounded, size: 22),
+                  const SizedBox(width: 12),
                   Text(
-                    'Se connecter',
-                    style: TextStyle(
+                    AppStrings.seConnecter,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
@@ -390,26 +360,26 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildDivider() {
-    return const Row(
+    return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(
             color: AppColors.border,
             thickness: 1,
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            'Première connexion ?',
-            style: TextStyle(
+            AppStrings.newOnDoctorPoint,
+            style: const TextStyle(
               color: AppColors.textSecondary,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
             color: AppColors.border,
             thickness: 1,
@@ -423,9 +393,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'Pas encore de compte ? ',
-          style: TextStyle(
+        Text(
+          AppStrings.alreadyHaveAccount,
+          style: const TextStyle(
             color: AppColors.textSecondary,
             fontSize: 15,
           ),
@@ -443,9 +413,9 @@ class _LoginScreenState extends State<LoginScreen> {
             foregroundColor: AppColors.primary,
             padding: EdgeInsets.zero,
           ),
-          child: const Text(
-            'Créer un compte',
-            style: TextStyle(
+          child: Text(
+            AppStrings.createAccount,
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -462,16 +432,16 @@ class _LoginScreenState extends State<LoginScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        title: const Text(
-          'Réinitialiser le mot de passe',
-          style: TextStyle(
+        title: Text(
+          AppStrings.resetPasswordTitle,
+          style: const TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
-        content: const Text(
-          'Un lien de réinitialisation sera envoyé à votre adresse email.',
-          style: TextStyle(color: AppColors.textSecondary),
+        content: Text(
+          AppStrings.resetPasswordMessage,
+          style: const TextStyle(color: AppColors.textSecondary),
         ),
         actions: [
           TextButton(
@@ -498,7 +468,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     setState(() => loading = true);
     try {
       final user = await auth.login(
