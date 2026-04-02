@@ -1,5 +1,6 @@
-import 'package:doctor_point/core/constants/app_colors.dart';
+// lib/auth/auth_choice_screen.dart
 import 'package:flutter/material.dart';
+import '../core/constants/app_colors.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
 
@@ -8,404 +9,165 @@ class AuthChoiceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final bool isTablet = size.width > 600;
-
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(color: AppColors.background),
-        child: SafeArea(
-          minimum: const EdgeInsets.symmetric(vertical: 20),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: EdgeInsets.all(isTablet ? 48.0 : 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(height: isTablet ? 40 : 20),
-                  _buildHeaderSection(),
-                  _buildMainContent(context, size),
-                  SizedBox(height: isTablet ? 60 : 40),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+      backgroundColor: const Color(0xFFF8F9FA), // Fond clair comme sur Figma
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              const Spacer(),
 
-  Widget _buildHeaderSection() {
-    return const Column(
-      children: [
-        Text(
-          'Bienvenue sur',
-          style: TextStyle(
-            fontSize: 20,
-            color: AppColors.textSecondary,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'DOCTORPOINT',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.w800,
-            color: AppColors.primary,
-            letterSpacing: 1.5,
-          ),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'Consultez un médecin, où que vous soyez',
-          style: TextStyle(
-            fontSize: 14,
-            color: AppColors.textSecondary,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMainContent(BuildContext context, Size size) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: 40,
-        horizontal: size.width > 500 ? 60 : 0,
-      ),
-      child: Column(
-        children: [
-          _buildIllustrationArea(size),
-          const SizedBox(height: 40),
-          _buildDescription(),
-          const SizedBox(height: 40),
-          _buildActionButtons(context),
-          const SizedBox(height: 32),
-          _buildDivider(),
-          const SizedBox(height: 32),
-          _buildSecondaryOptions(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildIllustrationArea(Size size) {
-    return Container(
-      width: size.width * 0.6,
-      height: size.width * 0.6,
-      constraints: const BoxConstraints(maxWidth: 280, maxHeight: 280),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 30,
-            spreadRadius: 5,
-            offset: const Offset(0, 10),
-          ),
-        ],
-        border: Border.all(color: AppColors.border, width: 1),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: -20,
-            right: -20,
-            child: Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primary.withValues(alpha: 0.08),
+              // Logo centré
+              Center(
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  height: 82,
+                ),
               ),
-            ),
-          ),
-          Positioned(
-            bottom: -15,
-            left: -15,
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primary.withValues(alpha: 0.05),
+
+              const SizedBox(height: 40),
+
+              // Texte principal
+              const Text(
+                "Prenez rendez-vous avec un spécialiste\nen quelques clics.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  height: 1.25,
+                  color: Colors.black87,
+                ),
               ),
-            ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.primary.withValues(alpha: 0.1),
+
+              const SizedBox(height: 12),
+
+              const Text(
+                "Patients et médecins réunis sur une seule plateforme\npour des soins rapides, simples et accessibles.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15.5,
+                  height: 1.45,
+                  color: Color(0xFF6B7280),
+                ),
+              ),
+
+              const SizedBox(height: 50),
+
+              // Bouton principal - Créer un compte
+              SizedBox(
+                width: double.infinity,
+                height: 58,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF10B981), // Vert comme sur Figma
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    elevation: 0,
                   ),
-                  padding: const EdgeInsets.all(20),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      fit: BoxFit.contain,
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.person_add_rounded, size: 22),
+                      SizedBox(width: 10),
+                      Text(
+                        "Créer un compte gratuitement",
+                        style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Bouton secondaire - Se connecter
+              SizedBox(
+                width: double.infinity,
+                height: 58,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF10B981), width: 2),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.login_rounded, size: 22, color: Color(0xFF10B981)),
+                      SizedBox(width: 10),
+                      Text(
+                        "Se connecter",
+                        style: TextStyle(
+                          fontSize: 16.5,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF10B981),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 48),
+
+              // Accès rapide
+              const Text(
+                "Accès rapide",
+                style: TextStyle(fontSize: 14, color: Color(0xFF9CA3AF)),
+              ),
+
+              const SizedBox(height: 12),
+
+              GestureDetector(
+                onTap: () {
+                  // Mode invité
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.visibility_outlined, size: 20, color: Color(0xFF6B7280)),
+                    SizedBox(width: 8),
+                    Text(
+                      "Explorer sans créer de compte",
+                      style: TextStyle(fontSize: 15, color: Color(0xFF6B7280)),
                     ),
-                  ),
+                  ],
                 ),
-                const SizedBox(height: 24),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                      width: 1,
-                    ),
-                  ),
-                  child: const Text(
-                    'DOCTORPOINT',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDescription() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        children: [
-          Text(
-            'Prenez rendez-vous avec un spécialiste en quelques clics.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
-              height: 1.5,
-            ),
-          ),
-          SizedBox(height: 12),
-          Text(
-            'Patients et médecins réunis sur une seule plateforme '
-            'pour des soins rapides, simples et accessibles.',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15,
-              color: AppColors.textSecondary,
-              height: 1.6,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButtons(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () => _navigateTo(context, const RegisterScreen()),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
               ),
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              elevation: 2,
-              shadowColor: AppColors.primary.withValues(alpha: 0.3),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.person_add_alt_1_rounded, size: 22),
-                SizedBox(width: 12),
-                Text(
-                  'Créer un compte gratuitement',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            onPressed: () => _navigateTo(context, const LoginScreen()),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.primary,
-              side: const BorderSide(color: AppColors.primary, width: 1.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              backgroundColor: Colors.transparent,
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.login_rounded, size: 22),
-                SizedBox(width: 12),
-                Text(
-                  'Se connecter',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
-  Widget _buildDivider() {
-    return Row(
-      children: [
-        Expanded(
-          child: Divider(
-            color: AppColors.border.withValues(alpha: 0.5),
-            thickness: 1,
-            height: 1,
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Accès rapide',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Divider(
-            color: AppColors.border.withValues(alpha: 0.5),
-            thickness: 1,
-            height: 1,
-          ),
-        ),
-      ],
-    );
-  }
+              const Spacer(),
 
-  Widget _buildSecondaryOptions(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: TextButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text(
-                    'Mode invité — accès limité aux fonctionnalités',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  backgroundColor: AppColors.primary,
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              );
-            },
-            style: TextButton.styleFrom(
-              foregroundColor: AppColors.textSecondary,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.visibility_outlined, size: 20),
-                SizedBox(width: 8),
-                Text(
-                  'Explorer sans créer de compte',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.textSecondary.withValues(alpha: 0.7),
-                height: 1.5,
-              ),
-              children: const [
-                TextSpan(text: 'En continuant, vous acceptez nos '),
+              // Mentions légales
+              Text.rich(
                 TextSpan(
-                  text: 'Conditions d\'utilisation',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w500,
-                    decoration: TextDecoration.underline,
-                  ),
+                  text: "En continuant, vous acceptez nos ",
+                  style: const TextStyle(fontSize: 12.5, color: Color(0xFF9CA3AF)),
+                  children: const [
+                    TextSpan(
+                      text: "Conditions d'utilisation",
+                      style: TextStyle(color: Color(0xFF10B981), fontWeight: FontWeight.w500),
+                    ),
+                    TextSpan(text: " et notre "),
+                    TextSpan(
+                      text: "Politique de confidentialité",
+                      style: TextStyle(color: Color(0xFF10B981), fontWeight: FontWeight.w500),
+                    ),
+                    TextSpan(text: "."),
+                  ],
                 ),
-                TextSpan(text: ' et notre '),
-                TextSpan(
-                  text: 'Politique de confidentialité',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w500,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-                TextSpan(text: '.'),
-              ],
-            ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 24),
+            ],
           ),
         ),
-      ],
-    );
-  }
-
-  void _navigateTo(BuildContext context, Widget screen) {
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (_, __, ___) => screen,
-        transitionsBuilder: (_, animation, __, child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOutCubic,
-            )),
-            child: child,
-          );
-        },
-        transitionDuration: const Duration(milliseconds: 500),
       ),
     );
   }

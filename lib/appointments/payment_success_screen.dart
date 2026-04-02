@@ -46,7 +46,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
       case 'message':
         return 'Messagerie';
       default:
-        return '';
+        return widget.consultationType;
     }
   }
 
@@ -63,10 +63,18 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
     }
   }
 
+  String get startButtonText {
+    return widget.consultationType == 'message' 
+        ? 'Ouvrir la messagerie' 
+        : 'Démarrer $typeLabel';
+  }
+
   void _startSession() async {
     setState(() => _isLoading = true);
-    await Future.delayed(const Duration(milliseconds: 500));
-    
+    await Future.delayed(const Duration(milliseconds: 600));
+
+    if (!mounted) return;
+
     if (widget.consultationType == 'voice') {
       Navigator.pushReplacement(
         context,
@@ -117,61 +125,98 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Success Animation/Icon
+              // ====================== ICÔNE DE SUCCÈS ======================
               Container(
-                width: 140,
-                height: 140,
+                width: 160,
+                height: 160,
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.1),
+                  color: AppColors.primary.withOpacity(0.08),
                   shape: BoxShape.circle,
                 ),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      width: 120,
-                      height: 120,
+                      width: 130,
+                      height: 130,
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.2),
+                        color: AppColors.primary.withOpacity(0.15),
                         shape: BoxShape.circle,
                       ),
                     ),
                     Container(
-                      width: 100,
-                      height: 100,
-                      decoration: const BoxDecoration(
+                      width: 110,
+                      height: 110,
+                      decoration: BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.check_rounded, size: 48, color: Colors.white),
+                      child: const Icon(
+                        Icons.check_rounded,
+                        size: 56,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 32),
-
-              Text(AppStrings.paymentSuccess, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: AppColors.textPrimary, letterSpacing: -0.5)),
-              const SizedBox(height: 12),
-
-              Text('Votre $typeLabel est confirmé', style: const TextStyle(fontSize: 16, color: AppColors.textSecondary)),
-              const SizedBox(height: 4),
-
-              Text('${widget.price} FCFA • ${widget.method}', style: const TextStyle(fontSize: 14, color: AppColors.primary, fontWeight: FontWeight.w600)),
-
               const SizedBox(height: 40),
 
-              // Appointment Details Card
+              // Titre de succès
+              Text(
+                AppStrings.paymentSuccess,
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                  letterSpacing: -0.6,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 12),
+
+              Text(
+                'Votre $typeLabel a été confirmé avec succès',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.textSecondary,
+                  height: 1.4,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 8),
+
+              Text(
+                '${widget.price} FCFA • ${widget.method}',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
+              ),
+
+              const SizedBox(height: 48),
+
+              // ====================== DÉTAILS DU RENDEZ-VOUS ======================
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, 5))],
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
                 ),
                 child: Column(
                   children: [
@@ -181,35 +226,47 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     const SizedBox(height: 20),
                     _detailRow(Icons.access_time_rounded, 'Heure', widget.time),
                     const SizedBox(height: 20),
-                    _detailRow(typeIcon, 'Consultation', typeLabel),
+                    _detailRow(typeIcon, 'Type de consultation', typeLabel),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 48),
 
-              // Start Session Button
+              // ====================== BOUTONS D'ACTION ======================
               SizedBox(
                 width: double.infinity,
-                height: 60,
+                height: 62,
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _startSession,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     elevation: 0,
                   ),
                   child: _isLoading
-                      ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
+                      ? const SizedBox(
+                          width: 26,
+                          height: 26,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 3,
+                          ),
+                        )
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(typeIcon, size: 22),
                             const SizedBox(width: 12),
                             Text(
-                              widget.consultationType == 'message' ? 'Ouvrir la messagerie' : 'Démarrer $typeLabel',
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                              startButtonText,
+                              style: const TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         ),
@@ -218,19 +275,29 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
 
               const SizedBox(height: 16),
 
-              // Home Button
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: TextButton(
                   onPressed: _goToHome,
-                  style: TextButton.styleFrom(foregroundColor: AppColors.textSecondary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.textSecondary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.home_rounded, size: 20),
                       const SizedBox(width: 8),
-                      Text(AppStrings.backToHome, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                      Text(
+                        AppStrings.backToHome,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -248,7 +315,10 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
         Container(
           width: 48,
           height: 48,
-          decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(14)),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(14),
+          ),
           child: Icon(icon, color: AppColors.primary, size: 22),
         ),
         const SizedBox(width: 16),
@@ -256,9 +326,22 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textSecondary,
+                ),
+              ),
               const SizedBox(height: 4),
-              Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
+              ),
             ],
           ),
         ),

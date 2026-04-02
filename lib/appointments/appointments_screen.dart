@@ -9,13 +9,19 @@ class AppointmentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userId = FirebaseAuth.instance.currentUser!.uid;
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
+    if (userId == null) {
+      return const Scaffold(
+        body: Center(child: Text("Veuillez vous connecter")),
+      );
+    }
 
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text(
-          AppStrings.myAppointments, // à définir dans app_strings
+          AppStrings.myAppointments,
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -28,10 +34,7 @@ class AppointmentsScreen extends StatelessWidget {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                AppColors.primary.withOpacity(0.95),
-                AppColors.primary,
-              ],
+              colors: [AppColors.primary.withOpacity(0.95), AppColors.primary],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -41,39 +44,21 @@ class AppointmentsScreen extends StatelessWidget {
             ),
           ),
         ),
-        toolbarHeight: 80,
+        toolbarHeight: 90,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('appointments')
             .where('userId', isEqualTo: userId)
+            .orderBy('createdAt', descending: true) // Plus récents en premier
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(
-                    strokeWidth: 2.5,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    AppStrings.loadingAppointments,
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+            return const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
             );
           }
 
@@ -88,7 +73,8 @@ class AppointmentsScreen extends StatelessWidget {
             itemCount: appointments.length,
             itemBuilder: (context, index) {
               final data = appointments[index].data() as Map<String, dynamic>;
-              return _appointmentCard(context, data);
+              final appointmentId = appointments[index].id;
+              return _appointmentCard(context, data, appointmentId);
             },
           );
         },
@@ -96,75 +82,66 @@ class AppointmentsScreen extends StatelessWidget {
     );
   }
 
-  Widget _appointmentCard(BuildContext context, Map<String, dynamic> data) {
-    final doctorName = data['doctorName'] ?? AppStrings.defaultDoctor;
+  // ====================== CARTE DE RENDEZ-VOUS ======================
+  Widget _appointmentCard(
+      BuildContext context, Map<String, dynamic> data, String appointmentId) {
+    final doctorName = data['doctorName'] ?? 'Médecin inconnu';
     final date = data['date'] ?? '';
     final time = data['time'] ?? '';
     final price = data['price'] ?? 0;
-    final status = data['status'] ?? '';
-    final type = data['consultationType'] ?? '';
+    final status = data['status']?.toString().toLowerCase() ?? 'pending';
+    final type = data['consultationType']?.toString() ?? 'voice';
 
-    final typeLabel = {
-      'voice': AppStrings.voiceCall,
-      'video': AppStrings.videoCall,
-      'message': AppStrings.messaging,
-    }[type] ?? type;
+    // Mapping des types
+    final typeInfo = {
+      'voice': {'label': 'Appel vocal', 'icon': Icons.phone_rounded, 'color': Colors.blue},
+      'video': {'label': 'Appel vidéo', 'icon': Icons.videocam_rounded, 'color': Colors.purple},
+      'message': {'label': 'Messagerie', 'icon': Icons.chat_bubble_rounded, 'color': Colors.green},
+    }[type] ?? {'label': type, 'icon': Icons.medical_services, 'color': AppColors.primary};
 
-    final typeIcon = {
-      'voice': Icons.call,
-      'video': Icons.videocam,
-      'message': Icons.chat,
-    }[type] ?? Icons.medical_services;
+    // Statut
+    final isCompleted = status == 'completed';
+    final statusColor = isCompleted ? Colors.green : AppColors.primary;
+    final statusText = isCompleted ? 'Terminé' : 'Confirmé';
 
-    final statusLabel = status == 'completed'
-        ? AppStrings.completedStatus
-        : AppStrings.confirmedStatus;
-    final statusColor = status == 'completed'
-        ? Colors.green
-        : AppColors.primary;
-
-    return GestureDetector(
-      onTap: () {
-        // Optionnel : ouvrir le détail du rendez-vous
-      },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 15,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(20),
+        child: InkWell(
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 15,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Material(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+          onTap: () {
+            // TODO: Naviguer vers détail du rendez-vous plus tard
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Détail du rendez-vous bientôt disponible')),
+            );
+          },
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(18),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Ligne : médecin + statut + prix
+                // En-tête : Médecin + Statut + Prix
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.person,
-                        color: AppColors.primary,
-                        size: 24,
-                      ),
+                    CircleAvatar(
+                      radius: 28,
+                      backgroundColor: AppColors.primary.withOpacity(0.1),
+                      child: const Icon(Icons.person, color: AppColors.primary, size: 28),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 14),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,18 +149,16 @@ class AppointmentsScreen extends StatelessWidget {
                           Text(
                             doctorName,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: Colors.black87,
+                              color: AppColors.textPrimary,
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            typeLabel,
+                            typeInfo['label'] as String,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: Colors.grey[600],
                               fontWeight: FontWeight.w500,
                             ),
@@ -195,40 +170,27 @@ class AppointmentsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                           decoration: BoxDecoration(
                             color: statusColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            statusLabel,
+                            statusText,
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 13,
                               fontWeight: FontWeight.w600,
                               color: statusColor,
                             ),
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
+                        Text(
+                          '$price FCFA',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
                             color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            '$price FCFA',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
                           ),
                         ),
                       ],
@@ -236,74 +198,41 @@ class AppointmentsScreen extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                const Divider(height: 28, thickness: 1, color: Color(0xFFF0F0F0)),
 
-                // Infos date et heure avec icônes colorées
+                // Date et Heure
                 Row(
                   children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_today,
-                            size: 16,
-                            color: AppColors.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            date,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            size: 16,
-                            color: AppColors.primary,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            time,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    _infoRow(Icons.calendar_today_rounded, date),
+                    const SizedBox(width: 24),
+                    _infoRow(Icons.access_time_rounded, time),
                   ],
                 ),
 
                 const SizedBox(height: 12),
 
-                // Type de consultation (pour plus de style)
+                // Type de consultation (badge plus joli)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    borderRadius: BorderRadius.circular(20),
+                    color: (typeInfo['color'] as Color).withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(typeIcon, size: 14, color: AppColors.primary),
-                      const SizedBox(width: 6),
+                      Icon(
+                        typeInfo['icon'] as IconData,
+                        size: 18,
+                        color: typeInfo['color'] as Color,
+                      ),
+                      const SizedBox(width: 8),
                       Text(
-                        typeLabel,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black54,
+                        typeInfo['label'] as String,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: typeInfo['color'] as Color,
                         ),
                       ),
                     ],
@@ -317,64 +246,85 @@ class AppointmentsScreen extends StatelessWidget {
     );
   }
 
+  Widget _infoRow(IconData icon, String text) {
+    return Expanded(
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: AppColors.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ====================== ÉTAT VIDE ======================
   Widget _emptyState(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 140,
-              height: 140,
+              width: 160,
+              height: 160,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.05),
+                color: AppColors.primary.withOpacity(0.08),
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                Icons.calendar_today,
-                size: 70,
-                color: AppColors.primary.withOpacity(0.3),
+                Icons.calendar_today_rounded,
+                size: 80,
+                color: AppColors.primary.withOpacity(0.4),
               ),
             ),
             const SizedBox(height: 32),
-            Text(
-              AppStrings.noAppointmentsTitle,
+            const Text(
+              'Aucun rendez-vous',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 24,
                 fontWeight: FontWeight.w700,
-                color: AppColors.primary,
+                color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 12),
             Text(
-              AppStrings.noAppointmentsDesc,
+              'Vous n\'avez pas encore pris de rendez-vous.\nCommencez dès maintenant !',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 15,
+                fontSize: 16,
                 color: Colors.grey[600],
                 height: 1.5,
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 40),
             ElevatedButton.icon(
               onPressed: () {
-                // Navigation vers l'écran de recherche de médecin
-                // (ajuste selon ta navigation)
-                Navigator.pushNamed(context, '/doctors');
+                // Navigation vers Home ou recherche de médecins
+                Navigator.pop(context); // Retour à l'accueil pour l'instant
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 2,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                elevation: 0,
               ),
-              icon: const Icon(Icons.search, size: 20),
+              icon: const Icon(Icons.search_rounded),
               label: const Text(
                 'Trouver un médecin',
-                style: TextStyle(fontWeight: FontWeight.w600),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ],

@@ -31,7 +31,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String paymentMethod = 'wave';
   bool loading = false;
 
-  Map<String, Map<String, dynamic>> paymentMethods = {
+  final Map<String, Map<String, dynamic>> paymentMethods = {
     'wave': {
       'name': 'Wave',
       'icon': 'assets/images/wave.png',
@@ -67,7 +67,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   Future<void> _confirmPayment() async {
     if (!mounted) return;
-    
+
     setState(() => loading = true);
 
     try {
@@ -87,6 +87,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'createdAt': FieldValue.serverTimestamp(),
       });
 
+      // Création de la notification
       await firestore.collection('notifications').add({
         'userId': user.uid,
         'title': 'Rendez-vous confirmé ✅',
@@ -97,7 +98,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
       });
 
       if (!mounted) return;
-      
+
+      // Petite animation avant redirection
       await Future.delayed(const Duration(milliseconds: 800));
 
       Navigator.pushReplacement(
@@ -119,10 +121,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => loading = false);
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Erreur de paiement: ${e.toString()}', style: const TextStyle(color: Colors.white)),
+          content: Text('Erreur lors du paiement : ${e.toString()}'),
           backgroundColor: Colors.red.shade600,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -136,12 +138,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(AppStrings.paymentSecure, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+        title: Text(
+          AppStrings.paymentSecure,
+          style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: AppColors.textPrimary,
         centerTitle: true,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        ),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -149,13 +156,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Appointment Summary
+            // ====================== RÉSUMÉ DU PAIEMENT ======================
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(24),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, 5))],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,34 +178,72 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Container(
                         width: 56,
                         height: 56,
-                        decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(16)),
-                        child: const Icon(Icons.medical_services_rounded, color: AppColors.primary, size: 28),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Icon(
+                          Icons.medical_services_rounded,
+                          color: AppColors.primary,
+                          size: 28,
+                        ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Résumé du paiement', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+                            const Text(
+                              'Résumé du paiement',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text(consultationTypeLabel, style: const TextStyle(fontSize: 14, color: AppColors.textSecondary)),
+                            Text(
+                              consultationTypeLabel,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 24),
+
                   _detailRow('Médecin', widget.doctorName),
                   _detailRow('Date', widget.date),
                   _detailRow('Heure', widget.time),
+                  _detailRow('Type', consultationTypeLabel),
+
                   const SizedBox(height: 20),
-                  const Divider(color: AppColors.border, height: 1),
+                  const Divider(color: AppColors.border, thickness: 1),
                   const SizedBox(height: 20),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Total à payer', style: TextStyle(fontSize: 16, color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
-                      Text('${widget.price} FCFA', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: AppColors.primary)),
+                      const Text(
+                        'Total à payer',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
+                      Text(
+                        '${widget.price} FCFA',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.primary,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -201,63 +252,109 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 32),
 
-            Text(AppStrings.choosePaymentMethod, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+            // ====================== CHOIX DU MOYEN DE PAIEMENT ======================
+            Text(
+              AppStrings.choosePaymentMethod,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: AppColors.textPrimary,
+              ),
+            ),
             const SizedBox(height: 8),
-            const Text('Sélectionnez une option de paiement sécurisée', style: TextStyle(fontSize: 14, color: AppColors.textSecondary)),
+            const Text(
+              'Sélectionnez une option de paiement sécurisée',
+              style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
+            ),
 
             const SizedBox(height: 24),
 
-            // Payment Methods List (ton code original reste identique)
+            // Liste des moyens de paiement
             ...paymentMethods.entries.map((entry) {
-              final methodKey = entry.key;
-              final methodData = entry.value;
-              final isSelected = paymentMethod == methodKey;
+              final key = entry.key;
+              final data = entry.value;
+              final isSelected = paymentMethod == key;
 
               return GestureDetector(
-                onTap: () => setState(() => paymentMethod = methodKey),
+                onTap: () => setState(() => paymentMethod = key),
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 12),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: isSelected ? (methodData['color'] as Color) : Colors.white,
+                    color: isSelected ? (data['color'] as Color) : Colors.white,
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: isSelected ? (methodData['color'] as Color) : AppColors.border, width: 1.5),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(isSelected ? 0.1 : 0.05), blurRadius: 10, offset: const Offset(0, 3))],
+                    border: Border.all(
+                      color: isSelected ? (data['color'] as Color) : AppColors.border,
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(isSelected ? 0.12 : 0.05),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Row(
                     children: [
                       Container(
                         width: 56,
                         height: 56,
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.white.withOpacity(0.2) : (methodData['color'] as Color).withOpacity(0.1),
+                          color: isSelected
+                              ? Colors.white.withOpacity(0.25)
+                              : (data['color'] as Color).withOpacity(0.1),
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Image.asset(methodData['icon'] as String, fit: BoxFit.contain, width: 36, height: 36),
+                        child: Image.asset(
+                          data['icon'] as String,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(methodData['name'] as String, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: isSelected ? Colors.white : AppColors.textPrimary)),
+                            Text(
+                              data['name'] as String,
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w700,
+                                color: isSelected ? Colors.white : AppColors.textPrimary,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text(methodData['description'] as String, style: TextStyle(fontSize: 13, color: isSelected ? Colors.white.withOpacity(0.9) : AppColors.textSecondary)),
+                            Text(
+                              data['description'] as String,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: isSelected
+                                    ? Colors.white.withOpacity(0.9)
+                                    : AppColors.textSecondary,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(width: 16),
                       Container(
-                        width: 24,
-                        height: 24,
+                        width: 26,
+                        height: 26,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: isSelected ? Colors.white : AppColors.textSecondary, width: 2),
+                          border: Border.all(
+                            color: isSelected ? Colors.white : AppColors.border,
+                            width: 2,
+                          ),
                           color: isSelected ? Colors.white : Colors.transparent,
                         ),
                         child: isSelected
-                            ? Icon(Icons.check_rounded, size: 16, color: methodData['color'] as Color)
+                            ? Icon(
+                                Icons.check_rounded,
+                                size: 16,
+                                color: data['color'] as Color,
+                              )
                             : null,
                       ),
                     ],
@@ -268,7 +365,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 32),
 
-            // Security Info
+            // Info sécurité
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -282,8 +379,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Paiement 100% sécurisé. Vos données bancaires sont cryptées.',
-                      style: TextStyle(fontSize: 13, color: Color(0xFF388E3C), fontWeight: FontWeight.w500),
+                      'Paiement 100% sécurisé • Vos données sont protégées',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Color(0xFF388E3C),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -292,21 +393,39 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 40),
 
-            // Pay Button
+            // Bouton Payer
             SizedBox(
               width: double.infinity,
-              height: 60,
+              height: 62,
               child: ElevatedButton(
                 onPressed: loading ? null : _confirmPayment,
-                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)), elevation: 0),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  elevation: 0,
+                ),
                 child: loading
-                    ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
+                    ? const SizedBox(
+                        width: 26,
+                        height: 26,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 3,
+                        ),
+                      )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.payments_rounded, size: 22),
                           const SizedBox(width: 12),
-                          Text('${AppStrings.payNow} ${widget.price} FCFA', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                          Text(
+                            '${AppStrings.payNow} ${widget.price} FCFA',
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
               ),
@@ -314,13 +433,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 16),
 
+            // Bouton Annuler
             SizedBox(
               width: double.infinity,
               height: 56,
               child: TextButton(
                 onPressed: loading ? null : () => Navigator.pop(context),
-                style: TextButton.styleFrom(foregroundColor: AppColors.textSecondary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-                child: const Text('Annuler', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                style: TextButton.styleFrom(
+                  foregroundColor: AppColors.textSecondary,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+                child: const Text(
+                  'Annuler',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ],
@@ -331,12 +457,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   Widget _detailRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 14),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(fontSize: 14, color: AppColors.textSecondary)),
-          Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 14,
+              color: AppColors.textSecondary,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 15.5,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );
